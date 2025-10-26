@@ -68,3 +68,48 @@ fn I8::extend_s(a : I8) -> Int16 {
 fn I8::extend_u(a : I8) -> Int16 {
   ...
 }
+
+///|
+fn I8::ne(a : I8, b : I8) -> Bool {
+  !a.equal(b)
+}
+
+///|
+fn I8::lt_s(a : I8, b : I8) -> Bool {
+  a.to_int() < b.to_int()
+}
+
+///|
+fn I8::lt_u(a : I8, b : I8) -> Bool {
+  a.to_int().reinterpret_as_uint() < b.to_int().reinterpret_as_uint()
+}
+
+///|
+fn I8::le_s(a : I8, b : I8) -> Bool {
+  a.to_int() <= b.to_int()
+}
+
+///|
+fn I8::le_u(a : I8, b : I8) -> Bool {
+  a.to_int().reinterpret_as_uint() <= b.to_int().reinterpret_as_uint()
+}
+
+///|
+fn I8::gt_s(a : I8, b : I8) -> Bool {
+  a.to_int() > b.to_int()
+}
+
+///|
+fn I8::gt_u(a : I8, b : I8) -> Bool {
+  a.to_int().reinterpret_as_uint() > b.to_int().reinterpret_as_uint()
+}
+
+///|
+fn I8::ge_s(a : I8, b : I8) -> Bool {
+  a.to_int() >= b.to_int()
+}
+
+///|
+fn I8::ge_u(a : I8, b : I8) -> Bool {
+  a.to_int().reinterpret_as_uint() >= b.to_int().reinterpret_as_uint()
+}

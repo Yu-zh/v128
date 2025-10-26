@@ -25,6 +25,11 @@ pub impl Eq for I8 with equal(self, other) {
 }
 
 ///|
+pub impl Compare for I8 with compare(self, other) {
+  self.to_int().compare(other.to_int())
+}
+
+///|
 pub let zero : I8 = I8(0)
 
 ///|
