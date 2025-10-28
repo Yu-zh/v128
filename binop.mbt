@@ -535,23 +535,23 @@ pub fn I16x8::avgr_u(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I16x8::extmul_low_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::mul(I16x8::extend_low_s(v1), I16x8::extend_low_s(v2))
+pub fn I16x8::extmul_low_i8x16_s(v1 : V128, v2 : V128) -> V128 {
+  I16x8::mul(I16x8::extend_low_i8x16_s(v1), I16x8::extend_low_i8x16_s(v2))
 }
 
 ///|
-pub fn I16x8::extmul_high_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::mul(I16x8::extend_high_s(v1), I16x8::extend_high_s(v2))
+pub fn I16x8::extmul_high_i8x16_s(v1 : V128, v2 : V128) -> V128 {
+  I16x8::mul(I16x8::extend_high_i8x16_s(v1), I16x8::extend_high_i8x16_s(v2))
 }
 
 ///|
-pub fn I16x8::extmul_low_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::mul(I16x8::extend_low_u(v1), I16x8::extend_low_u(v2))
+pub fn I16x8::extmul_low_i8x16_u(v1 : V128, v2 : V128) -> V128 {
+  I16x8::mul(I16x8::extend_low_i8x16_u(v1), I16x8::extend_low_i8x16_u(v2))
 }
 
 ///|
-pub fn I16x8::extmul_high_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::mul(I16x8::extend_high_u(v1), I16x8::extend_high_u(v2))
+pub fn I16x8::extmul_high_i8x16_u(v1 : V128, v2 : V128) -> V128 {
+  I16x8::mul(I16x8::extend_high_i8x16_u(v1), I16x8::extend_high_i8x16_u(v2))
 }
 // | I16x8 Q15MulRSatS -> V128.I16x8.q15mulr_sat_s
 // | I16x8 RelaxedQ15MulRS -> V128.I16x8.q15mulr_sat_s
@@ -651,23 +651,23 @@ pub fn I32x4::mul(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I32x4::extmul_low_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::mul(I32x4::extend_low_s(v1), I32x4::extend_low_s(v2))
+pub fn I32x4::extmul_low_i16x8_s(v1 : V128, v2 : V128) -> V128 {
+  I32x4::mul(I32x4::extend_low_i16x8_s(v1), I32x4::extend_low_i16x8_s(v2))
 }
 
 ///|
-pub fn I32x4::extmul_high_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::mul(I32x4::extend_high_s(v1), I32x4::extend_high_s(v2))
+pub fn I32x4::extmul_high_i16x8_s(v1 : V128, v2 : V128) -> V128 {
+  I32x4::mul(I32x4::extend_high_i16x8_s(v1), I32x4::extend_high_i16x8_s(v2))
 }
 
 ///|
-pub fn I32x4::extmul_low_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::mul(I32x4::extend_low_u(v1), I32x4::extend_low_u(v2))
+pub fn I32x4::extmul_low_i16x8_u(v1 : V128, v2 : V128) -> V128 {
+  I32x4::mul(I32x4::extend_low_i16x8_u(v1), I32x4::extend_low_i16x8_u(v2))
 }
 
 ///|
-pub fn I32x4::extmul_high_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::mul(I32x4::extend_high_u(v1), I32x4::extend_high_u(v2))
+pub fn I32x4::extmul_high_i16x8_u(v1 : V128, v2 : V128) -> V128 {
+  I32x4::mul(I32x4::extend_high_i16x8_u(v1), I32x4::extend_high_i16x8_u(v2))
 }
 
 ///|
