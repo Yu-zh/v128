@@ -113,3 +113,8 @@ fn I8::ge_s(a : I8, b : I8) -> Bool {
 fn I8::ge_u(a : I8, b : I8) -> Bool {
   a.to_int().reinterpret_as_uint() >= b.to_int().reinterpret_as_uint()
 }
+
+///|
+fn I8::shr_u(a : I8, shift : Int) -> I8 {
+  I8::reinterpret_from_byte(a.reinterpret_as_byte() >> shift)
+}

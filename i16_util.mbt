@@ -107,3 +107,8 @@ fn Int16::ge_s(a : Int16, b : Int16) -> Bool {
 fn Int16::ge_u(a : Int16, b : Int16) -> Bool {
   a.to_int().reinterpret_as_uint() >= b.to_int().reinterpret_as_uint()
 }
+
+///|
+fn Int16::shr_u(a : Int16, shift : Int) -> Int16 {
+  (a.reinterpret_as_uint16() >> shift).reinterpret_as_int16()
+}

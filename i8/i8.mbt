@@ -20,6 +20,16 @@ pub fn I8::from_int(i : Int) -> I8 {
 }
 
 ///|
+pub fn I8::reinterpret_as_byte(i : I8) -> Byte {
+  i.0
+}
+
+///|
+pub fn I8::reinterpret_from_byte(b : Byte) -> I8 {
+  I8(b)
+}
+
+///|
 pub impl Eq for I8 with equal(self, other) {
   self.0 == other.0
 }
@@ -40,6 +50,16 @@ pub impl Add for I8 with add(self, other) {
 ///|
 pub impl Sub for I8 with sub(self, other) {
   I8::from_int(self.to_int() - other.to_int())
+}
+
+///|
+pub impl Shl for I8 with shl(self, shift) {
+  I8::from_int(self.to_int() << shift)
+}
+
+///|
+pub impl Shr for I8 with shr(self, shift) {
+  I8::from_int(self.to_int() >> shift)
 }
 
 ///|

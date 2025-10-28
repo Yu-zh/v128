@@ -82,3 +82,8 @@ fn Int::ge_s(a : Int, b : Int) -> Bool {
 fn Int::ge_u(a : Int, b : Int) -> Bool {
   a.reinterpret_as_uint() >= b.reinterpret_as_uint()
 }
+
+///|
+fn Int::shr_u(a : Int, shift : Int) -> Int {
+  (a.reinterpret_as_uint() >> shift).reinterpret_as_int()
+}
