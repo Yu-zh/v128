@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(moon test:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(moon check:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
