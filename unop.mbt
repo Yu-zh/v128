@@ -22,22 +22,22 @@ pub fn I8x16::neg(v : V128) -> V128 {
   ) = I8x16::from(v)
   I8x16::to(
     I8x16(
-      -a1,
-      -a2,
-      -a3,
-      -a4,
-      -a5,
-      -a6,
-      -a7,
-      -a8,
-      -a9,
-      -a10,
-      -a11,
-      -a12,
-      -a13,
-      -a14,
-      -a15,
-      -a16,
+      a1.neg(),
+      a2.neg(),
+      a3.neg(),
+      a4.neg(),
+      a5.neg(),
+      a6.neg(),
+      a7.neg(),
+      a8.neg(),
+      a9.neg(),
+      a10.neg(),
+      a11.neg(),
+      a12.neg(),
+      a13.neg(),
+      a14.neg(),
+      a15.neg(),
+      a16.neg(),
     ),
   )
 }
@@ -106,22 +106,22 @@ pub fn I8x16::popcnt(v : V128) -> V128 {
   ) = I8x16::from(v)
   I8x16::to(
     I8x16(
-      a1.popcnt(),
-      a2.popcnt(),
-      a3.popcnt(),
-      a4.popcnt(),
-      a5.popcnt(),
-      a6.popcnt(),
-      a7.popcnt(),
-      a8.popcnt(),
-      a9.popcnt(),
-      a10.popcnt(),
-      a11.popcnt(),
-      a12.popcnt(),
-      a13.popcnt(),
-      a14.popcnt(),
-      a15.popcnt(),
-      a16.popcnt(),
+      a1.popcnt().to_byte(),
+      a2.popcnt().to_byte(),
+      a3.popcnt().to_byte(),
+      a4.popcnt().to_byte(),
+      a5.popcnt().to_byte(),
+      a6.popcnt().to_byte(),
+      a7.popcnt().to_byte(),
+      a8.popcnt().to_byte(),
+      a9.popcnt().to_byte(),
+      a10.popcnt().to_byte(),
+      a11.popcnt().to_byte(),
+      a12.popcnt().to_byte(),
+      a13.popcnt().to_byte(),
+      a14.popcnt().to_byte(),
+      a15.popcnt().to_byte(),
+      a16.popcnt().to_byte(),
     ),
   )
 }
@@ -129,7 +129,18 @@ pub fn I8x16::popcnt(v : V128) -> V128 {
 ///|
 pub fn I16x8::neg(v : V128) -> V128 {
   let I16x8(a1, a2, a3, a4, a5, a6, a7, a8) = I16x8::from(v)
-  I16x8::to(I16x8(-a1, -a2, -a3, -a4, -a5, -a6, -a7, -a8))
+  I16x8::to(
+    I16x8(
+      a1.neg(),
+      a2.neg(),
+      a3.neg(),
+      a4.neg(),
+      a5.neg(),
+      a6.neg(),
+      a7.neg(),
+      a8.neg(),
+    ),
+  )
 }
 
 ///|
@@ -158,7 +169,7 @@ pub fn I32x4::abs(v : V128) -> V128 {
 ///|
 pub fn I32x4::neg(v : V128) -> V128 {
   let I32x4(a1, a2, a3, a4) = I32x4::from(v)
-  I32x4::to(I32x4(-a1, -a2, -a3, -a4))
+  I32x4::to(I32x4(a1.neg(), a2.neg(), a3.neg(), a4.neg()))
 }
 
 ///|
@@ -170,7 +181,7 @@ pub fn I64x2::abs(v : V128) -> V128 {
 ///|
 pub fn I64x2::neg(v : V128) -> V128 {
   let I64x2(a1, a2) = I64x2::from(v)
-  I64x2::to(I64x2(-a1, -a2))
+  I64x2::to(I64x2(a1.neg(), a2.neg()))
 }
 
 ///|

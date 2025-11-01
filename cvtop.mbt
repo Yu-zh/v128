@@ -20,14 +20,14 @@ pub fn I16x8::extend_low_i8x16_s(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_s(a0),
-      I8::extend_s(a1),
-      I8::extend_s(a2),
-      I8::extend_s(a3),
-      I8::extend_s(a4),
-      I8::extend_s(a5),
-      I8::extend_s(a6),
-      I8::extend_s(a7),
+      a0.extend_s(),
+      a1.extend_s(),
+      a2.extend_s(),
+      a3.extend_s(),
+      a4.extend_s(),
+      a5.extend_s(),
+      a6.extend_s(),
+      a7.extend_s(),
     ),
   )
 }
@@ -54,14 +54,14 @@ pub fn I16x8::extend_high_i8x16_s(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_s(a8),
-      I8::extend_s(a9),
-      I8::extend_s(a10),
-      I8::extend_s(a11),
-      I8::extend_s(a12),
-      I8::extend_s(a13),
-      I8::extend_s(a14),
-      I8::extend_s(a15),
+      a8.extend_s(),
+      a9.extend_s(),
+      a10.extend_s(),
+      a11.extend_s(),
+      a12.extend_s(),
+      a13.extend_s(),
+      a14.extend_s(),
+      a15.extend_s(),
     ),
   )
 }
@@ -88,14 +88,14 @@ pub fn I16x8::extend_low_i8x16_u(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_u(a0),
-      I8::extend_u(a1),
-      I8::extend_u(a2),
-      I8::extend_u(a3),
-      I8::extend_u(a4),
-      I8::extend_u(a5),
-      I8::extend_u(a6),
-      I8::extend_u(a7),
+      a0.extend_u(),
+      a1.extend_u(),
+      a2.extend_u(),
+      a3.extend_u(),
+      a4.extend_u(),
+      a5.extend_u(),
+      a6.extend_u(),
+      a7.extend_u(),
     ),
   )
 }
@@ -122,14 +122,14 @@ pub fn I16x8::extend_high_i8x16_u(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_u(a8),
-      I8::extend_u(a9),
-      I8::extend_u(a10),
-      I8::extend_u(a11),
-      I8::extend_u(a12),
-      I8::extend_u(a13),
-      I8::extend_u(a14),
-      I8::extend_u(a15),
+      a8.extend_u(),
+      a9.extend_u(),
+      a10.extend_u(),
+      a11.extend_u(),
+      a12.extend_u(),
+      a13.extend_u(),
+      a14.extend_u(),
+      a15.extend_u(),
     ),
   )
 }
@@ -156,14 +156,14 @@ pub fn I16x8::ext_add_pairwise_i8x16_s(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_s(a0) + I8::extend_s(a1),
-      I8::extend_s(a2) + I8::extend_s(a3),
-      I8::extend_s(a4) + I8::extend_s(a5),
-      I8::extend_s(a6) + I8::extend_s(a7),
-      I8::extend_s(a8) + I8::extend_s(a9),
-      I8::extend_s(a10) + I8::extend_s(a11),
-      I8::extend_s(a12) + I8::extend_s(a13),
-      I8::extend_s(a14) + I8::extend_s(a15),
+      a0.extend_s() + a1.extend_s(),
+      a2.extend_s() + a3.extend_s(),
+      a4.extend_s() + a5.extend_s(),
+      a6.extend_s() + a7.extend_s(),
+      a8.extend_s() + a9.extend_s(),
+      a10.extend_s() + a11.extend_s(),
+      a12.extend_s() + a13.extend_s(),
+      a14.extend_s() + a15.extend_s(),
     ),
   )
 }
@@ -190,14 +190,14 @@ pub fn I16x8::ext_add_pairwise_i8x16_u(v : V128) -> V128 {
   ) = I8x16::from(v)
   I16x8::to(
     I16x8(
-      I8::extend_u(a0) + I8::extend_u(a1),
-      I8::extend_u(a2) + I8::extend_u(a3),
-      I8::extend_u(a4) + I8::extend_u(a5),
-      I8::extend_u(a6) + I8::extend_u(a7),
-      I8::extend_u(a8) + I8::extend_u(a9),
-      I8::extend_u(a10) + I8::extend_u(a11),
-      I8::extend_u(a12) + I8::extend_u(a13),
-      I8::extend_u(a14) + I8::extend_u(a15),
+      a0.extend_u() + a1.extend_u(),
+      a2.extend_u() + a3.extend_u(),
+      a4.extend_u() + a5.extend_u(),
+      a6.extend_u() + a7.extend_u(),
+      a8.extend_u() + a9.extend_u(),
+      a10.extend_u() + a11.extend_u(),
+      a12.extend_u() + a13.extend_u(),
+      a14.extend_u() + a15.extend_u(),
     ),
   )
 }
@@ -205,53 +205,25 @@ pub fn I16x8::ext_add_pairwise_i8x16_u(v : V128) -> V128 {
 ///|
 pub fn I32x4::extend_low_i16x8_s(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, _a4, _a5, _a6, _a7) = I16x8::from(v)
-  I32x4::to(
-    I32x4(
-      Int16::extend_s(a0),
-      Int16::extend_s(a1),
-      Int16::extend_s(a2),
-      Int16::extend_s(a3),
-    ),
-  )
+  I32x4::to(I32x4(a0.extend_s(), a1.extend_s(), a2.extend_s(), a3.extend_s()))
 }
 
 ///|
 pub fn I32x4::extend_high_i16x8_s(v : V128) -> V128 {
   let I16x8(_a0, _a1, _a2, _a3, a4, a5, a6, a7) = I16x8::from(v)
-  I32x4::to(
-    I32x4(
-      Int16::extend_s(a4),
-      Int16::extend_s(a5),
-      Int16::extend_s(a6),
-      Int16::extend_s(a7),
-    ),
-  )
+  I32x4::to(I32x4(a4.extend_s(), a5.extend_s(), a6.extend_s(), a7.extend_s()))
 }
 
 ///|
 pub fn I32x4::extend_low_i16x8_u(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, _a4, _a5, _a6, _a7) = I16x8::from(v)
-  I32x4::to(
-    I32x4(
-      Int16::extend_u(a0),
-      Int16::extend_u(a1),
-      Int16::extend_u(a2),
-      Int16::extend_u(a3),
-    ),
-  )
+  I32x4::to(I32x4(a0.extend_u(), a1.extend_u(), a2.extend_u(), a3.extend_u()))
 }
 
 ///|
 pub fn I32x4::extend_high_i16x8_u(v : V128) -> V128 {
   let I16x8(_a0, _a1, _a2, _a3, a4, a5, a6, a7) = I16x8::from(v)
-  I32x4::to(
-    I32x4(
-      Int16::extend_u(a4),
-      Int16::extend_u(a5),
-      Int16::extend_u(a6),
-      Int16::extend_u(a7),
-    ),
-  )
+  I32x4::to(I32x4(a4.extend_u(), a5.extend_u(), a6.extend_u(), a7.extend_u()))
 }
 
 ///|
@@ -317,10 +289,10 @@ pub fn I32x4::ext_add_pairwise_i16x8_s(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(
     I32x4(
-      Int16::extend_s(a0) + Int16::extend_s(a1),
-      Int16::extend_s(a2) + Int16::extend_s(a3),
-      Int16::extend_s(a4) + Int16::extend_s(a5),
-      Int16::extend_s(a6) + Int16::extend_s(a7),
+      a0.extend_s() + a1.extend_s(),
+      a2.extend_s() + a3.extend_s(),
+      a4.extend_s() + a5.extend_s(),
+      a6.extend_s() + a7.extend_s(),
     ),
   )
 }
@@ -330,10 +302,10 @@ pub fn I32x4::ext_add_pairwise_i16x8_u(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(
     I32x4(
-      Int16::extend_u(a0) + Int16::extend_u(a1),
-      Int16::extend_u(a2) + Int16::extend_u(a3),
-      Int16::extend_u(a4) + Int16::extend_u(a5),
-      Int16::extend_u(a6) + Int16::extend_u(a7),
+      a0.extend_u() + a1.extend_u(),
+      a2.extend_u() + a3.extend_u(),
+      a4.extend_u() + a5.extend_u(),
+      a6.extend_u() + a7.extend_u(),
     ),
   )
 }
@@ -341,25 +313,25 @@ pub fn I32x4::ext_add_pairwise_i16x8_u(v : V128) -> V128 {
 ///|
 pub fn I64x2::extend_low_i32x4_s(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(Int::extend_s(a0), Int::extend_s(a1)))
+  I64x2::to(I64x2(a0.extend_s(), a1.extend_s()))
 }
 
 ///|
 pub fn I64x2::extend_high_i32x4_s(v : V128) -> V128 {
   let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
-  I64x2::to(I64x2(Int::extend_s(a2), Int::extend_s(a3)))
+  I64x2::to(I64x2(a2.extend_s(), a3.extend_s()))
 }
 
 ///|
 pub fn I64x2::extend_low_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(Int::extend_u(a0), Int::extend_u(a1)))
+  I64x2::to(I64x2(a0.extend_u(), a1.extend_u()))
 }
 
 ///|
 pub fn I64x2::extend_high_i32x4_u(v : V128) -> V128 {
   let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
-  I64x2::to(I64x2(Int::extend_u(a2), Int::extend_u(a3)))
+  I64x2::to(I64x2(a2.extend_u(), a3.extend_u()))
 }
 
 ///|
@@ -371,14 +343,7 @@ pub fn F32x4::convert_i32x4_s(v : V128) -> V128 {
 ///|
 pub fn F32x4::convert_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
-  F32x4::to(
-    F32x4(
-      a0.reinterpret_as_uint().to_float(),
-      a1.reinterpret_as_uint().to_float(),
-      a2.reinterpret_as_uint().to_float(),
-      a3.reinterpret_as_uint().to_float(),
-    ),
-  )
+  F32x4::to(F32x4(a0.to_float(), a1.to_float(), a2.to_float(), a3.to_float()))
 }
 
 ///|
@@ -402,10 +367,5 @@ pub fn F64x2::convert_i32x4_s(v : V128) -> V128 {
 ///|
 pub fn F64x2::convert_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  F64x2::to(
-    F64x2(
-      a0.reinterpret_as_uint().to_double(),
-      a1.reinterpret_as_uint().to_double(),
-    ),
-  )
+  F64x2::to(F64x2(a0.to_double(), a1.to_double()))
 }

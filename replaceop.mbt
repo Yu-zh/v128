@@ -1,6 +1,5 @@
 ///|
-pub fn I8x16::replace(v : V128, laneid : Int, value : Int) -> V128 {
-  let value = I8::from_int(value)
+pub fn I8x16::replace(v : V128, laneid : Int, value : UInt) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -19,6 +18,7 @@ pub fn I8x16::replace(v : V128, laneid : Int, value : Int) -> V128 {
     a14,
     a15
   ) = I8x16::from(v)
+  let value = value.to_byte()
   if laneid == 0 {
     I8x16::to(
       I8x16(
@@ -121,9 +121,9 @@ pub fn I8x16::replace(v : V128, laneid : Int, value : Int) -> V128 {
 }
 
 ///|
-pub fn I16x8::replace(v : V128, laneid : Int, value : Int) -> V128 {
-  let value = value.to_int16()
+pub fn I16x8::replace(v : V128, laneid : Int, value : UInt) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
+  let value = value.to_uint16()
   if laneid == 0 {
     I16x8::to(I16x8(value, a1, a2, a3, a4, a5, a6, a7))
   } else if laneid == 1 {
@@ -146,7 +146,7 @@ pub fn I16x8::replace(v : V128, laneid : Int, value : Int) -> V128 {
 }
 
 ///|
-pub fn I32x4::replace(v : V128, laneid : Int, value : Int) -> V128 {
+pub fn I32x4::replace(v : V128, laneid : Int, value : UInt) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   if laneid == 0 {
     I32x4::to(I32x4(value, a1, a2, a3))
@@ -162,7 +162,7 @@ pub fn I32x4::replace(v : V128, laneid : Int, value : Int) -> V128 {
 }
 
 ///|
-pub fn I64x2::replace(v : V128, laneid : Int, value : Int64) -> V128 {
+pub fn I64x2::replace(v : V128, laneid : Int, value : UInt64) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v)
   if laneid == 0 {
     I64x2::to(I64x2(value, a1))

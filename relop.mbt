@@ -1,10 +1,6 @@
 ///|
-pub fn I8x16::relop(v1 : V128, v2 : V128, op : (I8, I8) -> Bool) -> V128 {
-  let i8_from_bool = b => if b {
-    @i8.I8::from_int(-1)
-  } else {
-    @i8.I8::from_int(0)
-  }
+pub fn I8x16::relop(v1 : V128, v2 : V128, op : (Byte, Byte) -> Bool) -> V128 {
+  let i8_from_bool = b => if b { (0xFF : Byte) } else { 0 }
   let I8x16(
     a0,
     a1,
@@ -65,57 +61,57 @@ pub fn I8x16::relop(v1 : V128, v2 : V128, op : (I8, I8) -> Bool) -> V128 {
 
 ///|
 pub fn I8x16::eq(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::equal)
+  I8x16::relop(v1, v2, Byte::equal)
 }
 
 ///|
 pub fn I8x16::ne(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::ne)
+  I8x16::relop(v1, v2, Byte::ne)
 }
 
 ///|
 pub fn I8x16::lt_s(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::lt_s)
+  I8x16::relop(v1, v2, Byte::lt_s)
 }
 
 ///|
 pub fn I8x16::lt_u(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::lt_u)
+  I8x16::relop(v1, v2, Byte::lt_u)
 }
 
 ///|
 pub fn I8x16::le_s(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::le_s)
+  I8x16::relop(v1, v2, Byte::le_s)
 }
 
 ///|
 pub fn I8x16::le_u(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::le_u)
+  I8x16::relop(v1, v2, Byte::le_u)
 }
 
 ///|
 pub fn I8x16::gt_s(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::gt_s)
+  I8x16::relop(v1, v2, Byte::gt_s)
 }
 
 ///|
 pub fn I8x16::gt_u(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::gt_u)
+  I8x16::relop(v1, v2, Byte::gt_u)
 }
 
 ///|
 pub fn I8x16::ge_s(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::ge_s)
+  I8x16::relop(v1, v2, Byte::ge_s)
 }
 
 ///|
 pub fn I8x16::ge_u(v1 : V128, v2 : V128) -> V128 {
-  I8x16::relop(v1, v2, I8::ge_u)
+  I8x16::relop(v1, v2, Byte::ge_u)
 }
 
 ///|
-fn I16x8::relop(v1 : V128, v2 : V128, op : (Int16, Int16) -> Bool) -> V128 {
-  let i16_from_bool = b => if b { (-1 : Int16) } else { 0 }
+fn I16x8::relop(v1 : V128, v2 : V128, op : (UInt16, UInt16) -> Bool) -> V128 {
+  let i16_from_bool = b => if b { (0xFFFF : UInt16) } else { 0 }
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v1)
   let I16x8(b0, b1, b2, b3, b4, b5, b6, b7) = I16x8::from(v2)
   I16x8::to(
@@ -134,57 +130,57 @@ fn I16x8::relop(v1 : V128, v2 : V128, op : (Int16, Int16) -> Bool) -> V128 {
 
 ///|
 pub fn I16x8::eq(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::equal)
+  I16x8::relop(v1, v2, UInt16::equal)
 }
 
 ///|
 pub fn I16x8::ne(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::ne)
+  I16x8::relop(v1, v2, UInt16::ne)
 }
 
 ///|
 pub fn I16x8::lt_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::lt_s)
+  I16x8::relop(v1, v2, UInt16::lt_s)
 }
 
 ///|
 pub fn I16x8::lt_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::lt_u)
+  I16x8::relop(v1, v2, UInt16::lt_u)
 }
 
 ///|
 pub fn I16x8::le_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::le_s)
+  I16x8::relop(v1, v2, UInt16::le_s)
 }
 
 ///|
 pub fn I16x8::le_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::le_u)
+  I16x8::relop(v1, v2, UInt16::le_u)
 }
 
 ///|
 pub fn I16x8::gt_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::gt_s)
+  I16x8::relop(v1, v2, UInt16::gt_s)
 }
 
 ///|
 pub fn I16x8::gt_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::gt_u)
+  I16x8::relop(v1, v2, UInt16::gt_u)
 }
 
 ///|
 pub fn I16x8::ge_s(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::ge_s)
+  I16x8::relop(v1, v2, UInt16::ge_s)
 }
 
 ///|
 pub fn I16x8::ge_u(v1 : V128, v2 : V128) -> V128 {
-  I16x8::relop(v1, v2, Int16::ge_u)
+  I16x8::relop(v1, v2, UInt16::ge_u)
 }
 
 ///|
-fn I32x4::relop(v1 : V128, v2 : V128, op : (Int, Int) -> Bool) -> V128 {
-  let i32_from_bool = b => if b { (-1 : Int) } else { 0 }
+fn I32x4::relop(v1 : V128, v2 : V128, op : (UInt, UInt) -> Bool) -> V128 {
+  let i32_from_bool = b => if b { (0xFFFFFFFF : UInt) } else { 0 }
   let I32x4(a0, a1, a2, a3) = I32x4::from(v1)
   let I32x4(b0, b1, b2, b3) = I32x4::from(v2)
   I32x4::to(
@@ -199,57 +195,57 @@ fn I32x4::relop(v1 : V128, v2 : V128, op : (Int, Int) -> Bool) -> V128 {
 
 ///|
 pub fn I32x4::eq(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::equal)
+  I32x4::relop(v1, v2, UInt::equal)
 }
 
 ///|
 pub fn I32x4::ne(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::ne)
+  I32x4::relop(v1, v2, UInt::ne)
 }
 
 ///|
 pub fn I32x4::lt_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::lt_s)
+  I32x4::relop(v1, v2, UInt::lt_s)
 }
 
 ///|
 pub fn I32x4::lt_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::lt_u)
+  I32x4::relop(v1, v2, UInt::lt_u)
 }
 
 ///|
 pub fn I32x4::le_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::le_s)
+  I32x4::relop(v1, v2, UInt::le_s)
 }
 
 ///|
 pub fn I32x4::le_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::le_u)
+  I32x4::relop(v1, v2, UInt::le_u)
 }
 
 ///|
 pub fn I32x4::gt_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::gt_s)
+  I32x4::relop(v1, v2, UInt::gt_s)
 }
 
 ///|
 pub fn I32x4::gt_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::gt_u)
+  I32x4::relop(v1, v2, UInt::gt_u)
 }
 
 ///|
 pub fn I32x4::ge_s(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::ge_s)
+  I32x4::relop(v1, v2, UInt::ge_s)
 }
 
 ///|
 pub fn I32x4::ge_u(v1 : V128, v2 : V128) -> V128 {
-  I32x4::relop(v1, v2, Int::ge_u)
+  I32x4::relop(v1, v2, UInt::ge_u)
 }
 
 ///|
-fn I64x2::relop(v1 : V128, v2 : V128, op : (Int64, Int64) -> Bool) -> V128 {
-  let i64_from_bool = b => if b { (-1 : Int64) } else { 0 }
+fn I64x2::relop(v1 : V128, v2 : V128, op : (UInt64, UInt64) -> Bool) -> V128 {
+  let i64_from_bool = b => if b { (0xFFFFFFFFFFFFFFFF : UInt64) } else { 0 }
   let I64x2(a0, a1) = I64x2::from(v1)
   let I64x2(b0, b1) = I64x2::from(v2)
   I64x2::to(I64x2(i64_from_bool(op(a0, b0)), i64_from_bool(op(a1, b1))))

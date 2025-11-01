@@ -1,52 +1,58 @@
 ///|
-fn I8::add_sat_s(a : I8, b : I8) -> I8 {
-  let sum = a.to_int() + b.to_int()
+fn Byte::add_sat_s(a : Byte, b : Byte) -> Byte {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  let sum = a_int + b_int
   if sum > 127 {
-    I8::from_int(127)
+    0x7F
   } else if sum < -128 {
-    I8::from_int(-128)
+    0x80
   } else {
-    I8::from_int(sum)
+    sum.to_byte()
   }
 }
 
 ///|
-fn I8::add_sat_u(a : I8, b : I8) -> I8 {
-  let sum = a.reinterpret_as_byte().to_int() + b.reinterpret_as_byte().to_int()
+fn Byte::add_sat_u(a : Byte, b : Byte) -> Byte {
+  let sum = a.to_uint() + b.to_uint()
   if sum > 255 {
-    I8::reinterpret_from_byte(255)
+    0xFF
   } else {
-    I8::reinterpret_from_byte(sum.to_byte())
+    sum.to_byte()
   }
 }
 
 ///|
-fn I8::sub_sat_s(a : I8, b : I8) -> I8 {
-  let diff = a.to_int() - b.to_int()
+fn Byte::sub_sat_s(a : Byte, b : Byte) -> Byte {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  let diff = a_int - b_int
   if diff > 127 {
-    I8::from_int(127)
+    0x7F
   } else if diff < -128 {
-    I8::from_int(-128)
+    0x80
   } else {
-    I8::from_int(diff)
+    diff.to_byte()
   }
 }
 
 ///|
-fn I8::sub_sat_u(a : I8, b : I8) -> I8 {
-  let a_uint = a.reinterpret_as_byte().to_int()
-  let b_uint = b.reinterpret_as_byte().to_int()
+fn Byte::sub_sat_u(a : Byte, b : Byte) -> Byte {
+  let a_uint = a.to_uint()
+  let b_uint = b.to_uint()
   let diff = a_uint - b_uint
   if diff < 0 {
-    I8::reinterpret_from_byte(0)
+    0
   } else {
-    I8::reinterpret_from_byte(diff.to_byte())
+    diff.to_byte()
   }
 }
 
 ///|
-fn I8::min_s(a : I8, b : I8) -> I8 {
-  if a.to_int() < b.to_int() {
+fn Byte::min_s(a : Byte, b : Byte) -> Byte {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  if a_int < b_int {
     a
   } else {
     b
@@ -54,8 +60,8 @@ fn I8::min_s(a : I8, b : I8) -> I8 {
 }
 
 ///|
-fn I8::min_u(a : I8, b : I8) -> I8 {
-  if a.to_int().reinterpret_as_uint() < b.to_int().reinterpret_as_uint() {
+fn Byte::min_u(a : Byte, b : Byte) -> Byte {
+  if a < b {
     a
   } else {
     b
@@ -63,8 +69,10 @@ fn I8::min_u(a : I8, b : I8) -> I8 {
 }
 
 ///|
-fn I8::max_s(a : I8, b : I8) -> I8 {
-  if a.to_int() > b.to_int() {
+fn Byte::max_s(a : Byte, b : Byte) -> Byte {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  if a_int > b_int {
     a
   } else {
     b
@@ -72,8 +80,8 @@ fn I8::max_s(a : I8, b : I8) -> I8 {
 }
 
 ///|
-fn I8::max_u(a : I8, b : I8) -> I8 {
-  if a.to_int().reinterpret_as_uint() > b.to_int().reinterpret_as_uint() {
+fn Byte::max_u(a : Byte, b : Byte) -> Byte {
+  if a > b {
     a
   } else {
     b
@@ -81,68 +89,96 @@ fn I8::max_u(a : I8, b : I8) -> I8 {
 }
 
 ///|
-fn I8::avgr_u(a : I8, b : I8) -> I8 {
-  let a_uint = a.reinterpret_as_byte().to_int()
-  let b_uint = b.reinterpret_as_byte().to_int()
-  I8::reinterpret_from_byte(((a_uint + b_uint + 1) / 2).to_byte())
+fn Byte::avgr_u(a : Byte, b : Byte) -> Byte {
+  let a_uint = a.to_uint()
+  let b_uint = b.to_uint()
+  ((a_uint + b_uint + 1) / 2).to_byte()
 }
 
 ///|
-fn I8::extend_s(a : I8) -> Int16 {
-  a.to_int().to_int16()
+fn Byte::sext(a : Byte) -> Int16 {
+  a.to_int16() << 8 >> 8
 }
 
 ///|
-fn I8::extend_u(a : I8) -> Int16 {
-  a.reinterpret_as_byte().to_int().to_int16()
+fn Byte::extend_s(a : Byte) -> UInt16 {
+  (a.to_int16() << 8 >> 8).reinterpret_as_uint16()
 }
 
 ///|
-fn I8::ne(a : I8, b : I8) -> Bool {
+fn Byte::extend_u(a : Byte) -> UInt16 {
+  a.to_uint16()
+}
+
+///|
+fn Byte::ne(a : Byte, b : Byte) -> Bool {
   !a.equal(b)
 }
 
 ///|
-fn I8::lt_s(a : I8, b : I8) -> Bool {
-  a.to_int() < b.to_int()
+fn Byte::lt_s(a : Byte, b : Byte) -> Bool {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  a_int < b_int
 }
 
 ///|
-fn I8::lt_u(a : I8, b : I8) -> Bool {
-  a.to_int().reinterpret_as_uint() < b.to_int().reinterpret_as_uint()
+fn Byte::lt_u(a : Byte, b : Byte) -> Bool {
+  a < b
 }
 
 ///|
-fn I8::le_s(a : I8, b : I8) -> Bool {
-  a.to_int() <= b.to_int()
+fn Byte::le_s(a : Byte, b : Byte) -> Bool {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  a_int <= b_int
 }
 
 ///|
-fn I8::le_u(a : I8, b : I8) -> Bool {
-  a.to_int().reinterpret_as_uint() <= b.to_int().reinterpret_as_uint()
+fn Byte::le_u(a : Byte, b : Byte) -> Bool {
+  a <= b
 }
 
 ///|
-fn I8::gt_s(a : I8, b : I8) -> Bool {
-  a.to_int() > b.to_int()
+fn Byte::gt_s(a : Byte, b : Byte) -> Bool {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  a_int > b_int
 }
 
 ///|
-fn I8::gt_u(a : I8, b : I8) -> Bool {
-  a.to_int().reinterpret_as_uint() > b.to_int().reinterpret_as_uint()
+fn Byte::gt_u(a : Byte, b : Byte) -> Bool {
+  a > b
 }
 
 ///|
-fn I8::ge_s(a : I8, b : I8) -> Bool {
-  a.to_int() >= b.to_int()
+fn Byte::ge_s(a : Byte, b : Byte) -> Bool {
+  let a_int = if a > 127 { a.to_int() - 256 } else { a.to_int() }
+  let b_int = if b > 127 { b.to_int() - 256 } else { b.to_int() }
+  a_int >= b_int
 }
 
 ///|
-fn I8::ge_u(a : I8, b : I8) -> Bool {
-  a.to_int().reinterpret_as_uint() >= b.to_int().reinterpret_as_uint()
+fn Byte::ge_u(a : Byte, b : Byte) -> Bool {
+  a >= b
 }
 
 ///|
-fn I8::shr_u(a : I8, shift : Int) -> I8 {
-  I8::reinterpret_from_byte(a.reinterpret_as_byte() >> shift)
+fn Byte::shr_s(a : Byte, shift : Int) -> Byte {
+  (a.to_int() >> shift).to_byte()
+}
+
+///|
+fn Byte::neg(a : Byte) -> Byte {
+  (-a.sext()).to_byte()
+}
+
+///|
+fn Byte::abs(a : Byte) -> Byte {
+  let signed = a.sext()
+  if signed < 0 {
+    (-signed).to_byte()
+  } else {
+    a
+  }
 }
