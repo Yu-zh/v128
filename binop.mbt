@@ -717,8 +717,8 @@ pub fn I64x2::extend_low_s(v : V128) -> V128 {
 
 ///|
 pub fn I64x2::extend_high_s(v : V128) -> V128 {
-  let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_s(a0), UInt::extend_s(a1)))
+  let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
+  I64x2::to(I64x2(UInt::extend_s(a2), UInt::extend_s(a3)))
 }
 
 ///|
@@ -729,8 +729,8 @@ pub fn I64x2::extend_low_u(v : V128) -> V128 {
 
 ///|
 pub fn I64x2::extend_high_u(v : V128) -> V128 {
-  let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_u(a0), UInt::extend_u(a1)))
+  let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
+  I64x2::to(I64x2(UInt::extend_u(a2), UInt::extend_u(a3)))
 }
 
 ///|
@@ -787,7 +787,7 @@ pub fn F32x4::relaxed_min(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 pub fn F32x4::relaxed_max(v1 : V128, v2 : V128) -> V128 {
-  F32x4::min(v1, v2)
+  F32x4::max(v1, v2)
 }
 
 ///|
@@ -848,5 +848,5 @@ pub fn F64x2::relaxed_min(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 pub fn F64x2::relaxed_max(v1 : V128, v2 : V128) -> V128 {
-  F64x2::min(v1, v2)
+  F64x2::max(v1, v2)
 }

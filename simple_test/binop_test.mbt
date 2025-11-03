@@ -368,7 +368,7 @@ test "I64x2::extend_low_s" {
 
 test "I64x2::extend_high_s" {
   let v = I32x4::const_(1, 2, 3, 4)
-  let expected = I64x2::const_(1UL, 2UL)
+  let expected = I64x2::const_(3UL, 4UL)
   assert_eq(I64x2::extend_high_s(v), expected)
 }
 
@@ -380,7 +380,7 @@ test "I64x2::extend_low_u" {
 
 test "I64x2::extend_high_u" {
   let v = I32x4::const_(1, 2, 3, 4)
-  let expected = I64x2::const_(1UL, 2UL)
+  let expected = I64x2::const_(3UL, 4UL)
   assert_eq(I64x2::extend_high_u(v), expected)
 }
 
@@ -452,7 +452,7 @@ test "F32x4::relaxed_min" {
 test "F32x4::relaxed_max" {
   let v1 = F32x4::const_(1.0, 5.0, 1.0, 5.0)
   let v2 = F32x4::const_(3.0, 3.0, 3.0, 3.0)
-  let expected = F32x4::const_(1.0, 3.0, 1.0, 3.0)
+  let expected = F32x4::const_(3.0, 5.0, 3.0, 5.0)
   assert_eq(F32x4::relaxed_max(v1, v2), expected)
 }
 
@@ -524,6 +524,6 @@ test "F64x2::relaxed_min" {
 test "F64x2::relaxed_max" {
   let v1 = F64x2::const_(1.0, 5.0)
   let v2 = F64x2::const_(3.0, 3.0)
-  let expected = F64x2::const_(1.0, 3.0)
+  let expected = F64x2::const_(3.0, 5.0)
   assert_eq(F64x2::relaxed_max(v1, v2), expected)
 }

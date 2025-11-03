@@ -64,7 +64,7 @@ test "I64x2::extend_low_i32x4_s" {
 
 test "I64x2::extend_high_i32x4_s" {
   let v = I32x4::const_(100, 200, 300, 400)
-  let expected = I64x2::const_(100UL, 200UL)
+  let expected = I64x2::const_(300UL, 400UL)
   assert_eq(I64x2::extend_high_s(v), expected)
 }
 
@@ -76,7 +76,7 @@ test "I64x2::extend_low_i32x4_u" {
 
 test "I64x2::extend_high_i32x4_u" {
   let v = I32x4::const_(100, 200, 300, 400)
-  let expected = I64x2::const_(100UL, 200UL)
+  let expected = I64x2::const_(300UL, 400UL)
   assert_eq(I64x2::extend_high_u(v), expected)
 }
 
@@ -134,12 +134,12 @@ test "I32x4::trunc_sat_f32x4_u" {
 
 test "I32x4::trunc_sat_f64x2_s_zero" {
   let v = F64x2::const_(1.7, 2.3)
-  let expected = I32x4::const_(0, 0, 1, 2)
+  let expected = I32x4::const_(1, 2, 0, 0)
   assert_eq(I32x4::trunc_sat_f64x2_s_zero(v), expected)
 }
 
 test "I32x4::trunc_sat_f64x2_u_zero" {
   let v = F64x2::const_(1.7, 2.3)
-  let expected = I32x4::const_(0, 0, 1, 2)
+  let expected = I32x4::const_(1, 2, 0, 0)
   assert_eq(I32x4::trunc_sat_f64x2_u_zero(v), expected)
 }

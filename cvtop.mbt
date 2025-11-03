@@ -255,13 +255,13 @@ pub fn I32x4::trunc_sat_f32x4_u(v : V128) -> V128 {
 ///|
 pub fn I32x4::trunc_sat_f64x2_s_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
-  I32x4::to(I32x4(0, 0, a0.trunc_sat_s(), a1.trunc_sat_s()))
+  I32x4::to(I32x4(a0.trunc_sat_s(), a1.trunc_sat_s(), 0, 0))
 }
 
 ///|
 pub fn I32x4::trunc_sat_f64x2_u_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
-  I32x4::to(I32x4(0, 0, a0.trunc_sat_u(), a1.trunc_sat_u()))
+  I32x4::to(I32x4(a0.trunc_sat_u(), a1.trunc_sat_u(), 0, 0))
 }
 
 ///|
