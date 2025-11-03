@@ -1,6 +1,6 @@
 ///|
 /// V128 is an abstract 128-bit vector type as in WebAssembly. 
-pub type V128
+pub struct V128(I8x16)
 
 ///|
 pub struct I8x16(
@@ -40,10 +40,14 @@ pub struct F32x4(Float, Float, Float, Float) derive(Eq)
 pub struct F64x2(Double, Double) derive(Eq)
 
 ///|
-fn I8x16::from(v : V128) -> I8x16 = "%identity"
+fn I8x16::from(v : V128) -> I8x16 {
+  v.0
+}
 
 ///|
-fn I8x16::to(self : I8x16) -> V128 = "%identity"
+fn I8x16::to(self : I8x16) -> V128 {
+  V128(self)
+}
 
 ///|
 fn I16x8::from(v : V128) -> I16x8 {
