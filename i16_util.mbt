@@ -56,13 +56,10 @@ fn UInt16::sub_sat_s(a : UInt16, b : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::sub_sat_u(a : UInt16, b : UInt16) -> UInt16 {
-  let a_uint = a.to_uint()
-  let b_uint = b.to_uint()
-  let diff = a_uint - b_uint
-  if diff < 0 {
+  if a < b {
     0
   } else {
-    diff.to_uint16()
+    a - b
   }
 }
 

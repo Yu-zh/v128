@@ -38,13 +38,10 @@ fn Byte::sub_sat_s(a : Byte, b : Byte) -> Byte {
 
 ///|
 fn Byte::sub_sat_u(a : Byte, b : Byte) -> Byte {
-  let a_uint = a.to_uint()
-  let b_uint = b.to_uint()
-  let diff = a_uint - b_uint
-  if diff < 0 {
+  if a < b {
     0
   } else {
-    diff.to_byte()
+    a - b
   }
 }
 
