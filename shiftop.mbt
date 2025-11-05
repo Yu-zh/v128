@@ -1,4 +1,5 @@
 ///|
+#intrinsic("simd")
 pub fn I8x16::shl(v : V128, shift : Int) -> V128 {
   let I8x16(
     a0,
@@ -41,6 +42,7 @@ pub fn I8x16::shl(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::shr_u(v : V128, shift : Int) -> V128 {
   let I8x16(
     a0,
@@ -83,6 +85,7 @@ pub fn I8x16::shr_u(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::shr_s(v : V128, shift : Int) -> V128 {
   let I8x16(
     a0,
@@ -125,6 +128,7 @@ pub fn I8x16::shr_s(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::shl(v : V128, shift : Int) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I16x8::to(
@@ -142,6 +146,7 @@ pub fn I16x8::shl(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::shr_u(v : V128, shift : Int) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I16x8::to(
@@ -159,6 +164,7 @@ pub fn I16x8::shr_u(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::shr_s(v : V128, shift : Int) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I16x8::to(
@@ -176,18 +182,21 @@ pub fn I16x8::shr_s(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::shl(v : V128, shift : Int) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   I32x4::to(I32x4(a0 << shift, a1 << shift, a2 << shift, a3 << shift))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::shr_u(v : V128, shift : Int) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   I32x4::to(I32x4(a0 >> shift, a1 >> shift, a2 >> shift, a3 >> shift))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::shr_s(v : V128, shift : Int) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   I32x4::to(
@@ -196,18 +205,21 @@ pub fn I32x4::shr_s(v : V128, shift : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::shl(v : V128, shift : Int) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v)
   I64x2::to(I64x2(a0 << shift, a1 << shift))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::shr_u(v : V128, shift : Int) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v)
   I64x2::to(I64x2(a0 >> shift, a1 >> shift))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::shr_s(v : V128, shift : Int) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v)
   I64x2::to(I64x2(a0.shr_s(shift), a1.shr_s(shift)))

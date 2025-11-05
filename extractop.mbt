@@ -1,5 +1,6 @@
 ///|
-pub fn I8x16::extract_s(v : V128, laneid : Int) -> UInt {
+#intrinsic("simd")
+pub fn I8x16::extract_lane_s(v : V128, laneid : Int) -> UInt {
   let I8x16(
     a0,
     a1,
@@ -56,7 +57,8 @@ pub fn I8x16::extract_s(v : V128, laneid : Int) -> UInt {
 }
 
 ///|
-pub fn I8x16::extract_u(v : V128, laneid : Int) -> UInt {
+#intrinsic("simd")
+pub fn I8x16::extract_lane_u(v : V128, laneid : Int) -> UInt {
   let I8x16(
     a0,
     a1,
@@ -113,7 +115,8 @@ pub fn I8x16::extract_u(v : V128, laneid : Int) -> UInt {
 }
 
 ///|
-pub fn I16x8::extract_s(v : V128, laneid : Int) -> UInt {
+#intrinsic("simd")
+pub fn I16x8::extract_lane_s(v : V128, laneid : Int) -> UInt {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   if laneid == 0 {
     a0.extend_s()
@@ -137,7 +140,8 @@ pub fn I16x8::extract_s(v : V128, laneid : Int) -> UInt {
 }
 
 ///|
-pub fn I16x8::extract_u(v : V128, laneid : Int) -> UInt {
+#intrinsic("simd")
+pub fn I16x8::extract_lane_u(v : V128, laneid : Int) -> UInt {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   if laneid == 0 {
     a0.to_uint()
@@ -161,7 +165,8 @@ pub fn I16x8::extract_u(v : V128, laneid : Int) -> UInt {
 }
 
 ///|
-pub fn I32x4::extract(v : V128, laneid : Int) -> UInt {
+#intrinsic("simd")
+pub fn I32x4::extract_lane(v : V128, laneid : Int) -> UInt {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   if laneid == 0 {
     a0
@@ -177,7 +182,8 @@ pub fn I32x4::extract(v : V128, laneid : Int) -> UInt {
 }
 
 ///|
-pub fn I64x2::extract(v : V128, laneid : Int) -> UInt64 {
+#intrinsic("simd")
+pub fn I64x2::extract_lane(v : V128, laneid : Int) -> UInt64 {
   let I64x2(a0, a1) = I64x2::from(v)
   if laneid == 0 {
     a0
@@ -189,7 +195,8 @@ pub fn I64x2::extract(v : V128, laneid : Int) -> UInt64 {
 }
 
 ///|
-pub fn F32x4::extract(v : V128, laneid : Int) -> Float {
+#intrinsic("simd")
+pub fn F32x4::extract_lane(v : V128, laneid : Int) -> Float {
   let F32x4(a0, a1, a2, a3) = F32x4::from(v)
   if laneid == 0 {
     a0
@@ -205,7 +212,8 @@ pub fn F32x4::extract(v : V128, laneid : Int) -> Float {
 }
 
 ///|
-pub fn F64x2::extract(v : V128, laneid : Int) -> Double {
+#intrinsic("simd")
+pub fn F64x2::extract_lane(v : V128, laneid : Int) -> Double {
   let F64x2(a0, a1) = F64x2::from(v)
   if laneid == 0 {
     a0

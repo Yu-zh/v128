@@ -1,4 +1,5 @@
 ///|
+#intrinsic("simd")
 pub fn I16x8::extend_low_i8x16_s(v : V128) -> V128 {
   let I8x16(
     a0,
@@ -33,6 +34,7 @@ pub fn I16x8::extend_low_i8x16_s(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extend_high_i8x16_s(v : V128) -> V128 {
   let I8x16(
     _a0,
@@ -67,6 +69,7 @@ pub fn I16x8::extend_high_i8x16_s(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extend_low_i8x16_u(v : V128) -> V128 {
   let I8x16(
     a0,
@@ -101,6 +104,7 @@ pub fn I16x8::extend_low_i8x16_u(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extend_high_i8x16_u(v : V128) -> V128 {
   let I8x16(
     _a0,
@@ -135,7 +139,8 @@ pub fn I16x8::extend_high_i8x16_u(v : V128) -> V128 {
 }
 
 ///|
-pub fn I16x8::ext_add_pairwise_i8x16_s(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::extadd_pairwise_i8x16_s(v : V128) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -169,7 +174,8 @@ pub fn I16x8::ext_add_pairwise_i8x16_s(v : V128) -> V128 {
 }
 
 ///|
-pub fn I16x8::ext_add_pairwise_i8x16_u(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::extadd_pairwise_i8x16_u(v : V128) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -203,30 +209,35 @@ pub fn I16x8::ext_add_pairwise_i8x16_u(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extend_low_i16x8_s(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, _a4, _a5, _a6, _a7) = I16x8::from(v)
   I32x4::to(I32x4(a0.extend_s(), a1.extend_s(), a2.extend_s(), a3.extend_s()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extend_high_i16x8_s(v : V128) -> V128 {
   let I16x8(_a0, _a1, _a2, _a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(I32x4(a4.extend_s(), a5.extend_s(), a6.extend_s(), a7.extend_s()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extend_low_i16x8_u(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, _a4, _a5, _a6, _a7) = I16x8::from(v)
   I32x4::to(I32x4(a0.extend_u(), a1.extend_u(), a2.extend_u(), a3.extend_u()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extend_high_i16x8_u(v : V128) -> V128 {
   let I16x8(_a0, _a1, _a2, _a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(I32x4(a4.extend_u(), a5.extend_u(), a6.extend_u(), a7.extend_u()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::trunc_sat_f32x4_s(v : V128) -> V128 {
   let F32x4(a0, a1, a2, a3) = F32x4::from(v)
   I32x4::to(
@@ -240,6 +251,7 @@ pub fn I32x4::trunc_sat_f32x4_s(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::trunc_sat_f32x4_u(v : V128) -> V128 {
   let F32x4(a0, a1, a2, a3) = F32x4::from(v)
   I32x4::to(
@@ -253,39 +265,46 @@ pub fn I32x4::trunc_sat_f32x4_u(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::trunc_sat_f64x2_s_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
   I32x4::to(I32x4(a0.trunc_sat_s(), a1.trunc_sat_s(), 0, 0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::trunc_sat_f64x2_u_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
   I32x4::to(I32x4(a0.trunc_sat_u(), a1.trunc_sat_u(), 0, 0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::relaxed_trunc_f32x4_s(v : V128) -> V128 {
   I32x4::trunc_sat_f32x4_s(v)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::relaxed_trunc_f32x4_u(v : V128) -> V128 {
   I32x4::trunc_sat_f32x4_u(v)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::relaxed_trunc_f64x2_s_zero(v : V128) -> V128 {
   I32x4::trunc_sat_f64x2_s_zero(v)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::relaxed_trunc_f64x2_u_zero(v : V128) -> V128 {
   I32x4::trunc_sat_f64x2_u_zero(v)
 }
 
 ///|
-pub fn I32x4::ext_add_pairwise_i16x8_s(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn I32x4::extadd_pairwise_i16x8_s(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(
     I32x4(
@@ -298,7 +317,8 @@ pub fn I32x4::ext_add_pairwise_i16x8_s(v : V128) -> V128 {
 }
 
 ///|
-pub fn I32x4::ext_add_pairwise_i16x8_u(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn I32x4::extadd_pairwise_i16x8_u(v : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   I32x4::to(
     I32x4(
@@ -311,61 +331,71 @@ pub fn I32x4::ext_add_pairwise_i16x8_u(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::extend_low_i32x4_s(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
   I64x2::to(I64x2(a0.extend_s(), a1.extend_s()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::extend_high_i32x4_s(v : V128) -> V128 {
   let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
   I64x2::to(I64x2(a2.extend_s(), a3.extend_s()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::extend_low_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
   I64x2::to(I64x2(a0.extend_u(), a1.extend_u()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::extend_high_i32x4_u(v : V128) -> V128 {
   let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
   I64x2::to(I64x2(a2.extend_u(), a3.extend_u()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::convert_i32x4_s(v : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   F32x4::to(F32x4(a0.to_float(), a1.to_float(), a2.to_float(), a3.to_float()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::convert_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   F32x4::to(F32x4(a0.to_float(), a1.to_float(), a2.to_float(), a3.to_float()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::demote_f64x2_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
   F32x4::to(F32x4(a0.to_float(), a1.to_float(), 0, 0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::promote_low_f32x4(v : V128) -> V128 {
   let F32x4(a0, a1, _a2, _a3) = F32x4::from(v)
   F64x2::to(F64x2(a0.to_double(), a1.to_double()))
 }
 
 ///|
-pub fn F64x2::convert_i32x4_s(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn F64x2::convert_low_i32x4_s(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
   F64x2::to(F64x2(a0.to_double(), a1.to_double()))
 }
 
 ///|
-pub fn F64x2::convert_i32x4_u(v : V128) -> V128 {
+#intrinsic("simd")
+pub fn F64x2::convert_low_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
   F64x2::to(F64x2(a0.to_double(), a1.to_double()))
 }

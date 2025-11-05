@@ -1,5 +1,6 @@
 ///|
-pub fn I8x16::replace(v : V128, laneid : Int, value : UInt) -> V128 {
+#intrinsic("simd")
+pub fn I8x16::replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -121,7 +122,8 @@ pub fn I8x16::replace(v : V128, laneid : Int, value : UInt) -> V128 {
 }
 
 ///|
-pub fn I16x8::replace(v : V128, laneid : Int, value : UInt) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   let value = value.to_uint16()
   if laneid == 0 {
@@ -146,7 +148,8 @@ pub fn I16x8::replace(v : V128, laneid : Int, value : UInt) -> V128 {
 }
 
 ///|
-pub fn I32x4::replace(v : V128, laneid : Int, value : UInt) -> V128 {
+#intrinsic("simd")
+pub fn I32x4::replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   if laneid == 0 {
     I32x4::to(I32x4(value, a1, a2, a3))
@@ -162,7 +165,8 @@ pub fn I32x4::replace(v : V128, laneid : Int, value : UInt) -> V128 {
 }
 
 ///|
-pub fn I64x2::replace(v : V128, laneid : Int, value : UInt64) -> V128 {
+#intrinsic("simd")
+pub fn I64x2::replace_lane(v : V128, laneid : Int, value : UInt64) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v)
   if laneid == 0 {
     I64x2::to(I64x2(value, a1))
@@ -174,7 +178,8 @@ pub fn I64x2::replace(v : V128, laneid : Int, value : UInt64) -> V128 {
 }
 
 ///|
-pub fn F32x4::replace(v : V128, laneid : Int, value : Float) -> V128 {
+#intrinsic("simd")
+pub fn F32x4::replace_lane(v : V128, laneid : Int, value : Float) -> V128 {
   let F32x4(a0, a1, a2, a3) = F32x4::from(v)
   if laneid == 0 {
     F32x4::to(F32x4(value, a1, a2, a3))
@@ -190,7 +195,8 @@ pub fn F32x4::replace(v : V128, laneid : Int, value : Float) -> V128 {
 }
 
 ///|
-pub fn F64x2::replace(v : V128, laneid : Int, value : Double) -> V128 {
+#intrinsic("simd")
+pub fn F64x2::replace_lane(v : V128, laneid : Int, value : Double) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
   if laneid == 0 {
     F64x2::to(F64x2(value, a1))

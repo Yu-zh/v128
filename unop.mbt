@@ -1,6 +1,7 @@
 // | I8x16 Popcnt -> V128.I8x16.popcnt
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::neg(v : V128) -> V128 {
   let I8x16(
     a1,
@@ -43,6 +44,7 @@ pub fn I8x16::neg(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::abs(v : V128) -> V128 {
   let I8x16(
     a1,
@@ -85,6 +87,7 @@ pub fn I8x16::abs(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::popcnt(v : V128) -> V128 {
   let I8x16(
     a1,
@@ -127,6 +130,7 @@ pub fn I8x16::popcnt(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::neg(v : V128) -> V128 {
   let I16x8(a1, a2, a3, a4, a5, a6, a7, a8) = I16x8::from(v)
   I16x8::to(
@@ -144,6 +148,7 @@ pub fn I16x8::neg(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::abs(v : V128) -> V128 {
   let I16x8(a1, a2, a3, a4, a5, a6, a7, a8) = I16x8::from(v)
   I16x8::to(
@@ -161,108 +166,126 @@ pub fn I16x8::abs(v : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::abs(v : V128) -> V128 {
   let I32x4(a1, a2, a3, a4) = I32x4::from(v)
   I32x4::to(I32x4(a1.abs(), a2.abs(), a3.abs(), a4.abs()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::neg(v : V128) -> V128 {
   let I32x4(a1, a2, a3, a4) = I32x4::from(v)
   I32x4::to(I32x4(a1.neg(), a2.neg(), a3.neg(), a4.neg()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::abs(v : V128) -> V128 {
   let I64x2(a1, a2) = I64x2::from(v)
   I64x2::to(I64x2(a1.abs(), a2.abs()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::neg(v : V128) -> V128 {
   let I64x2(a1, a2) = I64x2::from(v)
   I64x2::to(I64x2(a1.neg(), a2.neg()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::abs(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.abs(), a2.abs(), a3.abs(), a4.abs()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::neg(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(-a1, -a2, -a3, -a4))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::sqrt(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.sqrt(), a2.sqrt(), a3.sqrt(), a4.sqrt()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::ceil(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.ceil(), a2.ceil(), a3.ceil(), a4.ceil()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::floor(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.floor(), a2.floor(), a3.floor(), a4.floor()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::trunc(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.trunc(), a2.trunc(), a3.trunc(), a4.trunc()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::nearest(v : V128) -> V128 {
   let F32x4(a1, a2, a3, a4) = F32x4::from(v)
   F32x4::to(F32x4(a1.round(), a2.round(), a3.round(), a4.round()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::abs(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.abs(), a2.abs()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::neg(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(-a1, -a2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::sqrt(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.sqrt(), a2.sqrt()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::ceil(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.ceil(), a2.ceil()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::floor(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.floor(), a2.floor()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::trunc(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.trunc(), a2.trunc()))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::nearest(v : V128) -> V128 {
   let F64x2(a1, a2) = F64x2::from(v)
   F64x2::to(F64x2(a1.round(), a2.round()))

@@ -60,51 +60,61 @@ pub fn I8x16::relop(v1 : V128, v2 : V128, op : (Byte, Byte) -> Bool) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::eq(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::equal)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::ne(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::ne)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::lt_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::lt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::lt_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::lt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::le_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::le_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::le_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::le_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::gt_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::gt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::gt_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::gt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::ge_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::ge_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::ge_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::relop(v1, v2, Byte::ge_u)
 }
@@ -129,51 +139,61 @@ fn I16x8::relop(v1 : V128, v2 : V128, op : (UInt16, UInt16) -> Bool) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::eq(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::equal)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::ne(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::ne)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::lt_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::lt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::lt_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::lt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::le_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::le_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::le_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::le_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::gt_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::gt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::gt_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::gt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::ge_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::ge_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::ge_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::relop(v1, v2, UInt16::ge_u)
 }
@@ -194,51 +214,61 @@ fn I32x4::relop(v1 : V128, v2 : V128, op : (UInt, UInt) -> Bool) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::eq(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::equal)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::ne(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::ne)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::lt_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::lt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::lt_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::lt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::le_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::le_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::le_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::le_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::gt_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::gt_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::gt_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::gt_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::ge_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::ge_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::ge_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::relop(v1, v2, UInt::ge_u)
 }
@@ -252,31 +282,37 @@ fn I64x2::relop(v1 : V128, v2 : V128, op : (UInt64, UInt64) -> Bool) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::eq(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a == b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::ne(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a != b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::lt_s(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a < b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::le_s(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a <= b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::gt_s(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a > b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::ge_s(v1 : V128, v2 : V128) -> V128 {
   I64x2::relop(v1, v2, (a, b) => a >= b)
 }
@@ -301,31 +337,37 @@ fn F32x4::relop(v1 : V128, v2 : V128, op : (Float, Float) -> Bool) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::eq(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a == b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::ne(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a != b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::lt(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a < b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::le(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a <= b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::gt(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a > b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::ge(v1 : V128, v2 : V128) -> V128 {
   F32x4::relop(v1, v2, (a, b) => a >= b)
 }
@@ -347,31 +389,37 @@ pub fn F64x2::relop(
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::eq(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a == b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::ne(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a != b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::lt(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a < b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::le(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a <= b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::gt(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a > b)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::ge(v1 : V128, v2 : V128) -> V128 {
   F64x2::relop(v1, v2, (a, b) => a >= b)
 }

@@ -1,4 +1,5 @@
 ///|
+#intrinsic("simd")
 pub fn I8x16::swizzle(v1 : V128, v2 : V128) -> V128 {
   let I8x16(
     a0,
@@ -100,6 +101,7 @@ pub fn I8x16::swizzle(v1 : V128, v2 : V128) -> V128 {
 ///|
 // for this, we need attribute to guarantee that i0 to i15 must be integer literal
 // and this function must not be used as first-class function
+#intrinsic("simd")
 pub fn I8x16::shuffle(
   v1 : V128,
   v2 : V128,
@@ -249,6 +251,7 @@ pub fn I8x16::shuffle(
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::narrow_i16x8_s(v1 : V128, v2 : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v1)
   let I16x8(b0, b1, b2, b3, b4, b5, b6, b7) = I16x8::from(v2)
@@ -275,6 +278,7 @@ pub fn I8x16::narrow_i16x8_s(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::narrow_i16x8_u(v1 : V128, v2 : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v1)
   let I16x8(b0, b1, b2, b3, b4, b5, b6, b7) = I16x8::from(v2)
@@ -301,7 +305,7 @@ pub fn I8x16::narrow_i16x8_u(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I8x16::binop(v1 : V128, v2 : V128, op : (Byte, Byte) -> Byte) -> V128 {
+fn I8x16::binop(v1 : V128, v2 : V128, op : (Byte, Byte) -> Byte) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -361,67 +365,80 @@ pub fn I8x16::binop(v1 : V128, v2 : V128, op : (Byte, Byte) -> Byte) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::add(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::add)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::add_sat_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::add_sat_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::add_sat_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::add_sat_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::sub(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::sub)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::sub_sat_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::sub_sat_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::sub_sat_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::sub_sat_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::min_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::min_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::min_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::min_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::max_s(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::max_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::max_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::max_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::avgr_u(v1 : V128, v2 : V128) -> V128 {
   I8x16::binop(v1, v2, Byte::avgr_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I8x16::relaxed_swizzle(v1 : V128, v2 : V128) -> V128 {
   I8x16::swizzle(v1, v2)
 }
 
 ///|
-pub fn I16x8::narrow_i16x8_s(v1 : V128, v2 : V128) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::narrow_i32x4_s(v1 : V128, v2 : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v1)
   let I32x4(b0, b1, b2, b3) = I32x4::from(v2)
   I16x8::to(
@@ -439,7 +456,8 @@ pub fn I16x8::narrow_i16x8_s(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I16x8::narrow_i16x8_u(v1 : V128, v2 : V128) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::narrow_i32x4_u(v1 : V128, v2 : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v1)
   let I32x4(b0, b1, b2, b3) = I32x4::from(v2)
   I16x8::to(
@@ -457,11 +475,7 @@ pub fn I16x8::narrow_i16x8_u(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I16x8::binop(
-  v1 : V128,
-  v2 : V128,
-  op : (UInt16, UInt16) -> UInt16,
-) -> V128 {
+fn I16x8::binop(v1 : V128, v2 : V128, op : (UInt16, UInt16) -> UInt16) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v1)
   let I16x8(b0, b1, b2, b3, b4, b5, b6, b7) = I16x8::from(v2)
   I16x8::to(
@@ -479,81 +493,97 @@ pub fn I16x8::binop(
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::add(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::add)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::add_sat_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::add_sat_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::add_sat_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::add_sat_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::sub(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::sub)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::sub_sat_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::sub_sat_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::sub_sat_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::sub_sat_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::mul(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::mul)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::min_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::min_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::min_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::min_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::max_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::max_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::max_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::max_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::avgr_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::binop(v1, v2, UInt16::avgr_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extmul_low_i8x16_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::mul(I16x8::extend_low_i8x16_s(v1), I16x8::extend_low_i8x16_s(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extmul_high_i8x16_s(v1 : V128, v2 : V128) -> V128 {
   I16x8::mul(I16x8::extend_high_i8x16_s(v1), I16x8::extend_high_i8x16_s(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extmul_low_i8x16_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::mul(I16x8::extend_low_i8x16_u(v1), I16x8::extend_low_i8x16_u(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::extmul_high_i8x16_u(v1 : V128, v2 : V128) -> V128 {
   I16x8::mul(I16x8::extend_high_i8x16_u(v1), I16x8::extend_high_i8x16_u(v2))
 }
@@ -561,7 +591,8 @@ pub fn I16x8::extmul_high_i8x16_u(v1 : V128, v2 : V128) -> V128 {
 // | I16x8 RelaxedQ15MulRS -> V128.I16x8.q15mulr_sat_s
 
 ///|
-pub fn I16x8::dot_s(v1 : V128, v2 : V128) -> V128 {
+#intrinsic("simd")
+pub fn I16x8::relaxed_dot_s_i8x16(v1 : V128, v2 : V128) -> V128 {
   let I8x16(
     a0,
     a1,
@@ -620,61 +651,73 @@ fn I32x4::binop(v1 : V128, v2 : V128, op : (UInt, UInt) -> UInt) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::add(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::add)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::sub(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::sub)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::min_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::min_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::min_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::min_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::max_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::max_s)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::max_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::max_u)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::mul(v1 : V128, v2 : V128) -> V128 {
   I32x4::binop(v1, v2, UInt::mul)
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extmul_low_i16x8_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::mul(I32x4::extend_low_i16x8_s(v1), I32x4::extend_low_i16x8_s(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extmul_high_i16x8_s(v1 : V128, v2 : V128) -> V128 {
   I32x4::mul(I32x4::extend_high_i16x8_s(v1), I32x4::extend_high_i16x8_s(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extmul_low_i16x8_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::mul(I32x4::extend_low_i16x8_u(v1), I32x4::extend_low_i16x8_u(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::extmul_high_i16x8_u(v1 : V128, v2 : V128) -> V128 {
   I32x4::mul(I32x4::extend_high_i16x8_u(v1), I32x4::extend_high_i16x8_u(v2))
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::add(v1 : V128, v2 : V128) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v1)
   let I64x2(b0, b1) = I64x2::from(v2)
@@ -682,6 +725,7 @@ pub fn I64x2::add(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::sub(v1 : V128, v2 : V128) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v1)
   let I64x2(b0, b1) = I64x2::from(v2)
@@ -689,6 +733,7 @@ pub fn I64x2::sub(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::mul(v1 : V128, v2 : V128) -> V128 {
   let I64x2(a0, a1) = I64x2::from(v1)
   let I64x2(b0, b1) = I64x2::from(v2)
@@ -696,7 +741,8 @@ pub fn I64x2::mul(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I32x4::dot_s(v1 : V128, v2 : V128) -> V128 {
+#intrinsic("simd")
+pub fn I32x4::relaxed_dot_add_s_i16x8(v1 : V128, v2 : V128) -> V128 {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v1)
   let I16x8(b0, b1, b2, b3, b4, b5, b6, b7) = I16x8::from(v2)
   I32x4::to(
@@ -710,143 +756,159 @@ pub fn I32x4::dot_s(v1 : V128, v2 : V128) -> V128 {
 }
 
 ///|
-pub fn I64x2::extend_low_s(v : V128) -> V128 {
-  let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_s(a0), UInt::extend_s(a1)))
+#intrinsic("simd")
+pub fn I64x2::extmul_low_i32x4_s(v1 : V128, v2 : V128) -> V128 {
+  I64x2::mul(I64x2::extend_low_i32x4_s(v1), I64x2::extend_low_i32x4_s(v2))
 }
 
 ///|
-pub fn I64x2::extend_high_s(v : V128) -> V128 {
-  let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_s(a2), UInt::extend_s(a3)))
+#intrinsic("simd")
+pub fn I64x2::extmul_high_i32x4_s(v1 : V128, v2 : V128) -> V128 {
+  I64x2::mul(I64x2::extend_high_i32x4_s(v1), I64x2::extend_high_i32x4_s(v2))
 }
 
 ///|
-pub fn I64x2::extend_low_u(v : V128) -> V128 {
-  let I32x4(a0, a1, _a2, _a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_u(a0), UInt::extend_u(a1)))
+#intrinsic("simd")
+pub fn I64x2::extmul_low_i32x4_u(v1 : V128, v2 : V128) -> V128 {
+  I64x2::mul(I64x2::extend_low_i32x4_u(v1), I64x2::extend_low_i32x4_u(v2))
 }
 
 ///|
-pub fn I64x2::extend_high_u(v : V128) -> V128 {
-  let I32x4(_a0, _a1, a2, a3) = I32x4::from(v)
-  I64x2::to(I64x2(UInt::extend_u(a2), UInt::extend_u(a3)))
+#intrinsic("simd")
+pub fn I64x2::extmul_high_i32x4_u(v1 : V128, v2 : V128) -> V128 {
+  I64x2::mul(I64x2::extend_high_i32x4_u(v1), I64x2::extend_high_i32x4_u(v2))
 }
 
 ///|
-pub fn F32x4::binop(v1 : V128, v2 : V128, op : (Float, Float) -> Float) -> V128 {
+fn F32x4::binop(v1 : V128, v2 : V128, op : (Float, Float) -> Float) -> V128 {
   let F32x4(a0, a1, a2, a3) = F32x4::from(v1)
   let F32x4(b0, b1, b2, b3) = F32x4::from(v2)
   F32x4::to(F32x4(op(a0, b0), op(a1, b1), op(a2, b2), op(a3, b3)))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::add(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::add)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::sub(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::sub)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::mul(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::mul)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::div(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::div)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::min(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::min)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::max(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::max)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::pmin(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::pmin)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::pmax(v1 : V128, v2 : V128) -> V128 {
   F32x4::binop(v1, v2, Float::pmax)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::relaxed_min(v1 : V128, v2 : V128) -> V128 {
   F32x4::min(v1, v2)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F32x4::relaxed_max(v1 : V128, v2 : V128) -> V128 {
   F32x4::max(v1, v2)
 }
 
 ///|
-pub fn F64x2::binop(
-  v1 : V128,
-  v2 : V128,
-  op : (Double, Double) -> Double,
-) -> V128 {
+fn F64x2::binop(v1 : V128, v2 : V128, op : (Double, Double) -> Double) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v1)
   let F64x2(b0, b1) = F64x2::from(v2)
   F64x2::to(F64x2(op(a0, b0), op(a1, b1)))
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::add(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::add)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::sub(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::sub)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::mul(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::mul)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::div(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::div)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::min(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::min)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::max(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::max)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::pmin(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::pmin)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::pmax(v1 : V128, v2 : V128) -> V128 {
   F64x2::binop(v1, v2, Double::pmax)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::relaxed_min(v1 : V128, v2 : V128) -> V128 {
   F64x2::min(v1, v2)
 }
 
 ///|
+#intrinsic("simd")
 pub fn F64x2::relaxed_max(v1 : V128, v2 : V128) -> V128 {
   F64x2::max(v1, v2)
 }

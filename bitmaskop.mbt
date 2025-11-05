@@ -1,4 +1,5 @@
 ///|
+#intrinsic("simd")
 pub fn I8x16::bitmask(v : V128) -> Int {
   let I8x16(
     a0,
@@ -37,6 +38,7 @@ pub fn I8x16::bitmask(v : V128) -> Int {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I16x8::bitmask(v : V128) -> Int {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = I16x8::from(v)
   ((if (a0 & 0x8000) > 0 { 1 } else { 0 }) << 0) |
@@ -50,6 +52,7 @@ pub fn I16x8::bitmask(v : V128) -> Int {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I32x4::bitmask(v : V128) -> Int {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
   ((if (a0 & 0x80000000) > 0 { 1 } else { 0 }) << 0) |
@@ -59,6 +62,7 @@ pub fn I32x4::bitmask(v : V128) -> Int {
 }
 
 ///|
+#intrinsic("simd")
 pub fn I64x2::bitmask(v : V128) -> Int {
   let I64x2(a0, a1) = I64x2::from(v)
   ((if (a0 & 0x8000000000000000) > 0 { 1 } else { 0 }) << 0) |

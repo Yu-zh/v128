@@ -37,6 +37,7 @@ fn FixedArray::store_i64_le(
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::store(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -79,6 +80,7 @@ pub fn V128::store(
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::store8_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -139,6 +141,7 @@ pub fn V128::store8_lane(
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::store16_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -166,6 +169,7 @@ pub fn V128::store16_lane(
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::store32_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -185,6 +189,7 @@ pub fn V128::store32_lane(
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::store64_lane(
   bytes : FixedArray[Byte],
   offset : Int,

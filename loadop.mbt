@@ -35,6 +35,7 @@ fn FixedArray::load_i64_le(bytes : FixedArray[Byte], offset : Int) -> UInt64 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes[offset]
   let a1 = bytes[offset + 1]
@@ -58,6 +59,7 @@ pub fn V128::load(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load8x8_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes[offset].extend_s()
   let a1 = bytes[offset + 1].extend_s()
@@ -71,6 +73,7 @@ pub fn V128::load8x8_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load8x8_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes[offset].extend_u()
   let a1 = bytes[offset + 1].extend_u()
@@ -84,6 +87,7 @@ pub fn V128::load8x8_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load16x4_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i16_le(offset).extend_s()
   let a1 = bytes.load_i16_le(offset + 1).extend_s()
@@ -93,6 +97,7 @@ pub fn V128::load16x4_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load16x4_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i16_le(offset).extend_u()
   let a1 = bytes.load_i16_le(offset + 1).extend_u()
@@ -102,6 +107,7 @@ pub fn V128::load16x4_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load32x2_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset).extend_s()
   let a1 = bytes.load_i32_le(offset + 1).extend_s()
@@ -109,6 +115,7 @@ pub fn V128::load32x2_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load32x2_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset).extend_u()
   let a1 = bytes.load_i32_le(offset + 1).extend_u()
@@ -116,6 +123,7 @@ pub fn V128::load32x2_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load8_splat(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes[offset]
   I8x16::to(
@@ -124,36 +132,42 @@ pub fn V128::load8_splat(bytes : FixedArray[Byte], offset : Int) -> V128 {
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load16_splat(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i16_le(offset)
   I16x8::to(I16x8(a0, a0, a0, a0, a0, a0, a0, a0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load32_splat(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset)
   I32x4::to(I32x4(a0, a0, a0, a0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load64_splat(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i64_le(offset)
   I64x2::to(I64x2(a0, a0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load32_zero(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset)
   I32x4::to(I32x4(a0, 0, 0, 0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load64_zero(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i64_le(offset)
   I64x2::to(I64x2(a0, 0))
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load8_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -161,10 +175,11 @@ pub fn V128::load8_lane(
   laneid : Int,
 ) -> V128 {
   let a0 = bytes[offset].to_uint()
-  I8x16::replace(x, laneid, a0)
+  I8x16::replace_lane(x, laneid, a0)
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load16_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -172,10 +187,11 @@ pub fn V128::load16_lane(
   laneid : Int,
 ) -> V128 {
   let a0 = bytes.load_i16_le(offset).to_uint()
-  I16x8::replace(x, laneid, a0)
+  I16x8::replace_lane(x, laneid, a0)
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load32_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -183,10 +199,11 @@ pub fn V128::load32_lane(
   laneid : Int,
 ) -> V128 {
   let a0 = bytes.load_i32_le(offset)
-  I32x4::replace(x, laneid, a0)
+  I32x4::replace_lane(x, laneid, a0)
 }
 
 ///|
+#intrinsic("simd")
 pub fn V128::load64_lane(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -194,5 +211,5 @@ pub fn V128::load64_lane(
   laneid : Int,
 ) -> V128 {
   let a0 = bytes.load_i64_le(offset)
-  I64x2::replace(x, laneid, a0)
+  I64x2::replace_lane(x, laneid, a0)
 }
