@@ -6,12 +6,12 @@
 
 test "I8x16::neg" {
   let v = I8x16::const_(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-  let expected = I8x16::const_((-1 : Int).to_byte(), (-2 : Int).to_byte(), (-3 : Int).to_byte(), (-4 : Int).to_byte(), (-5 : Int).to_byte(), (-6 : Int).to_byte(), (-7 : Int).to_byte(), (-8 : Int).to_byte(), (-9 : Int).to_byte(), (-10 : Int).to_byte(), (-11 : Int).to_byte(), (-12 : Int).to_byte(), (-13 : Int).to_byte(), (-14 : Int).to_byte(), (-15 : Int).to_byte(), (-16 : Int).to_byte())
+  let expected = I8x16::const_(255, 254, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240)
   assert_eq(I8x16::neg(v), expected)
 }
 
 test "I8x16::abs" {
-  let v = I8x16::const_((-1 : Int).to_byte(), 2, (-3 : Int).to_byte(), 4, (-5 : Int).to_byte(), 6, (-7 : Int).to_byte(), 8, (-9 : Int).to_byte(), 10, (-11 : Int).to_byte(), 12, (-13 : Int).to_byte(), 14, (-15 : Int).to_byte(), 16)
+  let v = I8x16::const_(255, 2, 253, 4, 251, 6, 249, 8, 247, 10, 245, 12, 243, 14, 241, 16)
   let expected = I8x16::const_(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
   assert_eq(I8x16::abs(v), expected)
 }
@@ -26,12 +26,12 @@ test "I8x16::popcnt" {
 
 test "I16x8::neg" {
   let v = I16x8::const_(1, 2, 3, 4, 5, 6, 7, 8)
-  let expected = I16x8::const_((-1 : Int16).reinterpret_as_uint16(), (-2 : Int16).reinterpret_as_uint16(), (-3 : Int16).reinterpret_as_uint16(), (-4 : Int16).reinterpret_as_uint16(), (-5 : Int16).reinterpret_as_uint16(), (-6 : Int16).reinterpret_as_uint16(), (-7 : Int16).reinterpret_as_uint16(), (-8 : Int16).reinterpret_as_uint16())
+  let expected = I16x8::const_(65535, 65534, 65533, 65532, 65531, 65530, 65529, 65528)
   assert_eq(I16x8::neg(v), expected)
 }
 
 test "I16x8::abs" {
-  let v = I16x8::const_((-1 : Int16).reinterpret_as_uint16(), 2, (-3 : Int16).reinterpret_as_uint16(), 4, (-5 : Int16).reinterpret_as_uint16(), 6, (-7 : Int16).reinterpret_as_uint16(), 8)
+  let v = I16x8::const_(65535, 2, 65533, 4, 65531, 6, 65529, 8)
   let expected = I16x8::const_(1, 2, 3, 4, 5, 6, 7, 8)
   assert_eq(I16x8::abs(v), expected)
 }
@@ -40,12 +40,12 @@ test "I16x8::abs" {
 
 test "I32x4::neg" {
   let v = I32x4::const_(1, 2, 3, 4)
-  let expected = I32x4::const_((-1 : Int).reinterpret_as_uint(), (-2 : Int).reinterpret_as_uint(), (-3 : Int).reinterpret_as_uint(), (-4 : Int).reinterpret_as_uint())
+  let expected = I32x4::const_(4294967295, 4294967294, 4294967293, 4294967292)
   assert_eq(I32x4::neg(v), expected)
 }
 
 test "I32x4::abs" {
-  let v = I32x4::const_((-1 : Int).reinterpret_as_uint(), 2, (-3 : Int).reinterpret_as_uint(), 4)
+  let v = I32x4::const_(4294967295, 2, 4294967293, 4)
   let expected = I32x4::const_(1, 2, 3, 4)
   assert_eq(I32x4::abs(v), expected)
 }
@@ -54,12 +54,12 @@ test "I32x4::abs" {
 
 test "I64x2::neg" {
   let v = I64x2::const_(100UL, 200UL)
-  let expected = I64x2::const_((-100L : Int64).reinterpret_as_uint64(), (-200L : Int64).reinterpret_as_uint64())
+  let expected = I64x2::const_(18446744073709551516UL, 18446744073709551416UL)
   assert_eq(I64x2::neg(v), expected)
 }
 
 test "I64x2::abs" {
-  let v = I64x2::const_((-100L : Int64).reinterpret_as_uint64(), 200UL)
+  let v = I64x2::const_(18446744073709551516UL, 200UL)
   let expected = I64x2::const_(100UL, 200UL)
   assert_eq(I64x2::abs(v), expected)
 }

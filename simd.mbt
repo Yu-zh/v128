@@ -3,6 +3,7 @@
 pub struct V128(I8x16)
 
 ///|
+#valtype
 pub struct I8x16(
   Byte,
   Byte,
@@ -23,20 +24,25 @@ pub struct I8x16(
 ) derive(Eq)
 
 ///|
+#valtype
 pub struct I16x8(UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16) derive (
   Eq,
 )
 
 ///|
+#valtype
 pub struct I32x4(UInt, UInt, UInt, UInt) derive(Eq)
 
 ///|
+#valtype
 pub struct I64x2(UInt64, UInt64) derive(Eq)
 
 ///|
+#valtype
 pub struct F32x4(Float, Float, Float, Float) derive(Eq)
 
 ///|
+#valtype
 pub struct F64x2(Double, Double) derive(Eq)
 
 ///|
