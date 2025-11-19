@@ -3,8 +3,7 @@
 pub struct V128(I8x16)
 
 ///|
-#valtype
-pub struct I8x16(
+struct I8x16(
   Byte,
   Byte,
   Byte,
@@ -24,26 +23,25 @@ pub struct I8x16(
 ) derive(Eq)
 
 ///|
-#valtype
-pub struct I16x8(UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16) derive (
+struct I16x8(UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16) derive (
   Eq,
 )
 
 ///|
 #valtype
-pub struct I32x4(UInt, UInt, UInt, UInt) derive(Eq)
+struct I32x4(UInt, UInt, UInt, UInt) derive(Eq)
 
 ///|
 #valtype
-pub struct I64x2(UInt64, UInt64) derive(Eq)
+struct I64x2(UInt64, UInt64) derive(Eq)
 
 ///|
 #valtype
-pub struct F32x4(Float, Float, Float, Float) derive(Eq)
+struct F32x4(Float, Float, Float, Float) derive(Eq)
 
 ///|
 #valtype
-pub struct F64x2(Double, Double) derive(Eq)
+struct F64x2(Double, Double) derive(Eq)
 
 ///|
 fn I8x16::from(v : V128) -> I8x16 {
@@ -332,15 +330,25 @@ pub impl Eq for V128 with equal(self, other) {
 }
 
 ///|
+pub fn v128_to_string(v : V128) -> String {
+  v.to_string()
+}
+
+///|
+pub fn v128_eq(v1 : V128, v2 : V128) -> Bool {
+  v1 == v2
+}
+
+///|
 test "back and forth conversion1" {
-  let v1 = I8x16::const_(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v1 = i8x16_const_(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
   assert_eq(I8x16::from(v1).to(), v1)
   assert_eq(I16x8::from(v1).to(), v1)
   assert_eq(I32x4::from(v1).to(), v1)
   assert_eq(I64x2::from(v1).to(), v1)
   assert_eq(F32x4::from(v1).to(), v1)
   assert_eq(F64x2::from(v1).to(), v1)
-  let v2 = I16x8::const_(
+  let v2 = i16x8_const_(
     0x0201, 0x0403, 0x0605, 0x0807, 0x0A09, 0x0C0B, 0x0E0D, 0x100F,
   )
   assert_eq(v2, v1)
@@ -349,13 +357,13 @@ test "back and forth conversion1" {
   assert_eq(I64x2::from(v2).to(), v2)
   assert_eq(F32x4::from(v2).to(), v2)
   assert_eq(F64x2::from(v2).to(), v2)
-  let v3 = I32x4::const_(0x04030201, 0x08070605, 0x0C0B0A09, 0x100F0E0D)
+  let v3 = i32x4_const_(0x04030201, 0x08070605, 0x0C0B0A09, 0x100F0E0D)
   assert_eq(v3, v1)
   assert_eq(I32x4::from(v3).to(), v3)
   assert_eq(I64x2::from(v3).to(), v3)
   assert_eq(F32x4::from(v3).to(), v3)
   assert_eq(F64x2::from(v3).to(), v3)
-  let v4 = I64x2::const_(0x0807060504030201, 0x100F0E0D0C0B0A09)
+  let v4 = i64x2_const_(0x0807060504030201, 0x100F0E0D0C0B0A09)
   assert_eq(v4, v1)
   assert_eq(I64x2::from(v4).to(), v4)
   assert_eq(F32x4::from(v4).to(), v4)
