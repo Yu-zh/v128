@@ -153,10 +153,10 @@ fn I64x2::to(v : I64x2) -> V128 {
 ///|
 fn F32x4::from(v : V128) -> F32x4 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
-  let b0 = a0.reinterpret_as_float()
-  let b1 = a1.reinterpret_as_float()
-  let b2 = a2.reinterpret_as_float()
-  let b3 = a3.reinterpret_as_float()
+  let b0 = Float::reinterpret_from_uint(a0)
+  let b1 = Float::reinterpret_from_uint(a1)
+  let b2 = Float::reinterpret_from_uint(a2)
+  let b3 = Float::reinterpret_from_uint(a3)
   F32x4(b0, b1, b2, b3)
 }
 

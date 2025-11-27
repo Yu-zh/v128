@@ -1320,19 +1320,33 @@ pub fn i64x2_extend_high_i32x4_u(v : V128) -> V128 {
 ///|
 pub fn f32x4_convert_i32x4_s(v : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
-  F32x4::to(F32x4(a0.to_float(), a1.to_float(), a2.to_float(), a3.to_float()))
+  F32x4::to(
+    F32x4(
+      Float::from_uint(a0),
+      Float::from_uint(a1),
+      Float::from_uint(a2),
+      Float::from_uint(a3),
+    ),
+  )
 }
 
 ///|
 pub fn f32x4_convert_i32x4_u(v : V128) -> V128 {
   let I32x4(a0, a1, a2, a3) = I32x4::from(v)
-  F32x4::to(F32x4(a0.to_float(), a1.to_float(), a2.to_float(), a3.to_float()))
+  F32x4::to(
+    F32x4(
+      Float::from_uint(a0),
+      Float::from_uint(a1),
+      Float::from_uint(a2),
+      Float::from_uint(a3),
+    ),
+  )
 }
 
 ///|
 pub fn f32x4_demote_f64x2_zero(v : V128) -> V128 {
   let F64x2(a0, a1) = F64x2::from(v)
-  F32x4::to(F32x4(a0.to_float(), a1.to_float(), 0, 0))
+  F32x4::to(F32x4(Float::from_double(a0), Float::from_double(a1), 0, 0))
 }
 
 ///|
@@ -2068,9 +2082,9 @@ pub fn i64x2_ge_s(v1 : V128, v2 : V128) -> V128 {
 ///|
 fn F32x4::relop(v1 : V128, v2 : V128, op : (Float, Float) -> Bool) -> V128 {
   let f32_from_bool = b => if b {
-    (-1 : Int).reinterpret_as_float()
+    Float::reinterpret_from_int(-1)
   } else {
-    (0).reinterpret_as_float()
+    Float::reinterpret_from_int(0)
   }
   let F32x4(a0, a1, a2, a3) = F32x4::from(v1)
   let F32x4(b0, b1, b2, b3) = F32x4::from(v2)
