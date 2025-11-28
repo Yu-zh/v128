@@ -1,5 +1,8 @@
 {
   "test-import": [
     "Yu-zh/v128"
+  ],
+  "overrides": [
+    "Yu-zh/v128/wasm"
   ]
 }
