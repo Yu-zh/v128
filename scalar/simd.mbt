@@ -341,14 +341,14 @@ pub fn v128_eq(v1 : V128, v2 : V128) -> Bool {
 
 ///|
 test "back and forth conversion1" {
-  let v1 = i8x16_const_(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v1 = i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
   assert_eq(I8x16::from(v1).to(), v1)
   assert_eq(I16x8::from(v1).to(), v1)
   assert_eq(I32x4::from(v1).to(), v1)
   assert_eq(I64x2::from(v1).to(), v1)
   assert_eq(F32x4::from(v1).to(), v1)
   assert_eq(F64x2::from(v1).to(), v1)
-  let v2 = i16x8_const_(
+  let v2 = i16x8_const(
     0x0201, 0x0403, 0x0605, 0x0807, 0x0A09, 0x0C0B, 0x0E0D, 0x100F,
   )
   assert_eq(v2, v1)
@@ -357,13 +357,13 @@ test "back and forth conversion1" {
   assert_eq(I64x2::from(v2).to(), v2)
   assert_eq(F32x4::from(v2).to(), v2)
   assert_eq(F64x2::from(v2).to(), v2)
-  let v3 = i32x4_const_(0x04030201, 0x08070605, 0x0C0B0A09, 0x100F0E0D)
+  let v3 = i32x4_const(0x04030201, 0x08070605, 0x0C0B0A09, 0x100F0E0D)
   assert_eq(v3, v1)
   assert_eq(I32x4::from(v3).to(), v3)
   assert_eq(I64x2::from(v3).to(), v3)
   assert_eq(F32x4::from(v3).to(), v3)
   assert_eq(F64x2::from(v3).to(), v3)
-  let v4 = i64x2_const_(0x0807060504030201, 0x100F0E0D0C0B0A09)
+  let v4 = i64x2_const(0x0807060504030201, 0x100F0E0D0C0B0A09)
   assert_eq(v4, v1)
   assert_eq(I64x2::from(v4).to(), v4)
   assert_eq(F32x4::from(v4).to(), v4)

@@ -428,7 +428,7 @@ pub extern "wasm" fn i64x2_bitmask(v : V128) -> Int =
 // ============================
 
 ///|
-pub fn i8x16_const_(
+pub fn i8x16_const(
   a0 : Byte,
   a1 : Byte,
   a2 : Byte,
@@ -448,7 +448,7 @@ pub fn i8x16_const_(
 ) -> V128 = "%i8x16.const"
 
 ///|
-pub fn i16x8_const_(
+pub fn i16x8_const(
   a0 : UInt16,
   a1 : UInt16,
   a2 : UInt16,
@@ -460,16 +460,16 @@ pub fn i16x8_const_(
 ) -> V128 = "%i16x8.const"
 
 ///|
-pub fn i32x4_const_(a0 : UInt, a1 : UInt, a2 : UInt, a3 : UInt) -> V128 = "%i32x4.const"
+pub fn i32x4_const(a0 : UInt, a1 : UInt, a2 : UInt, a3 : UInt) -> V128 = "%i32x4.const"
 
 ///|
-pub fn i64x2_const_(a0 : UInt64, a1 : UInt64) -> V128 = "%i64x2.const"
+pub fn i64x2_const(a0 : UInt64, a1 : UInt64) -> V128 = "%i64x2.const"
 
 ///|
-pub fn f32x4_const_(a0 : Float, a1 : Float, a2 : Float, a3 : Float) -> V128 = "%f32x4.const"
+pub fn f32x4_const(a0 : Float, a1 : Float, a2 : Float, a3 : Float) -> V128 = "%f32x4.const"
 
 ///|
-pub fn f64x2_const_(a0 : Double, a1 : Double) -> V128 = "%f64x2.const"
+pub fn f64x2_const(a0 : Double, a1 : Double) -> V128 = "%f64x2.const"
 
 // ============================
 // cvtop

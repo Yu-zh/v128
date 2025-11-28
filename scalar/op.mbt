@@ -920,7 +920,7 @@ pub fn i64x2_bitmask(v : V128) -> Int {
 // ============================
 
 ///|
-pub fn i8x16_const_(
+pub fn i8x16_const(
   a0 : Byte,
   a1 : Byte,
   a2 : Byte,
@@ -944,7 +944,7 @@ pub fn i8x16_const_(
 }
 
 ///|
-pub fn i16x8_const_(
+pub fn i16x8_const(
   a0 : UInt16,
   a1 : UInt16,
   a2 : UInt16,
@@ -958,22 +958,22 @@ pub fn i16x8_const_(
 }
 
 ///|
-pub fn i32x4_const_(a0 : UInt, a1 : UInt, a2 : UInt, a3 : UInt) -> V128 {
+pub fn i32x4_const(a0 : UInt, a1 : UInt, a2 : UInt, a3 : UInt) -> V128 {
   I32x4::to(I32x4(a0, a1, a2, a3))
 }
 
 ///|
-pub fn i64x2_const_(a0 : UInt64, a1 : UInt64) -> V128 {
+pub fn i64x2_const(a0 : UInt64, a1 : UInt64) -> V128 {
   I64x2::to(I64x2(a0, a1))
 }
 
 ///|
-pub fn f32x4_const_(a0 : Float, a1 : Float, a2 : Float, a3 : Float) -> V128 {
+pub fn f32x4_const(a0 : Float, a1 : Float, a2 : Float, a3 : Float) -> V128 {
   F32x4::to(F32x4(a0, a1, a2, a3))
 }
 
 ///|
-pub fn f64x2_const_(a0 : Double, a1 : Double) -> V128 {
+pub fn f64x2_const(a0 : Double, a1 : Double) -> V128 {
   F64x2::to(F64x2(a0, a1))
 }
 
