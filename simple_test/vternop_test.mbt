@@ -3,9 +3,9 @@
 
 ///|
 test "V128::bitselect" {
-  let v1 = I32x4::const_(100, 200, 300, 400)
-  let v2 = I32x4::const_(10, 20, 30, 40)
-  let mask = I32x4::const_(0xFFFFFFFF, 0, 0xFFFFFFFF, 0)
-  let expected = I32x4::const_(100, 20, 300, 40)
-  assert_eq(V128::bitselect(v1, v2, mask), expected)
+  let v1 = @v128.i32x4_const(100, 200, 300, 400)
+  let v2 = @v128.i32x4_const(10, 20, 30, 40)
+  let mask = @v128.i32x4_const(0xFFFFFFFF, 0, 0xFFFFFFFF, 0)
+  let expected = @v128.i32x4_const(100, 20, 300, 40)
+  assert_eq(@v128.v128_bitselect(v1, v2, mask), expected)
 }
