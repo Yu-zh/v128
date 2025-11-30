@@ -3176,7 +3176,7 @@ pub fn f64x2_nearest(v : V128) -> V128 {
 
 ///|
 pub fn v128_bitselect(v1 : V128, v2 : V128, mask : V128) -> V128 {
-  v128_and_(v1, v128_or_(mask, v128_and_(v2, v128_not(mask))))
+  v128_xor(v2, v128_and_(mask, v128_xor(v1, v2)))
 }
 
 // ===========================

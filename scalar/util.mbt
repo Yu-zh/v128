@@ -166,7 +166,7 @@ fn Byte::ge_u(a : Byte, b : Byte) -> Bool {
 
 ///|
 fn Byte::shr_s(a : Byte, shift : Int) -> Byte {
-  (a.to_int() >> shift).to_byte()
+  (a.sext() >> shift).to_byte()
 }
 
 ///|
