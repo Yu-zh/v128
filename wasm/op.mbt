@@ -656,11 +656,13 @@ pub fn f64x2_extract_lane(v : V128, laneid : Int) -> Double = "%f64x2.extract_la
 // ============================
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load(bytes : FixedArray[Byte], offset : Int) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
   #|    (v128.load offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load8x8_s(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -669,6 +671,7 @@ pub extern "wasm" fn v128_load8x8_s(
   #|    (v128.load8x8_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load8x8_u(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -677,6 +680,7 @@ pub extern "wasm" fn v128_load8x8_u(
   #|    (v128.load8x8_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load16x4_s(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -685,6 +689,7 @@ pub extern "wasm" fn v128_load16x4_s(
   #|    (v128.load16x4_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load16x4_u(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -693,6 +698,7 @@ pub extern "wasm" fn v128_load16x4_u(
   #|    (v128.load16x4_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load32x2_s(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -701,6 +707,7 @@ pub extern "wasm" fn v128_load32x2_s(
   #|    (v128.load32x2_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load32x2_u(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -709,6 +716,7 @@ pub extern "wasm" fn v128_load32x2_u(
   #|    (v128.load32x2_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load8_splat(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -717,6 +725,7 @@ pub extern "wasm" fn v128_load8_splat(
   #|    (v128.load8_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load16_splat(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -725,6 +734,7 @@ pub extern "wasm" fn v128_load16_splat(
   #|    (v128.load16_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load32_splat(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -733,6 +743,7 @@ pub extern "wasm" fn v128_load32_splat(
   #|    (v128.load32_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load64_splat(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -741,6 +752,7 @@ pub extern "wasm" fn v128_load64_splat(
   #|    (v128.load64_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load32_zero(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -749,6 +761,7 @@ pub extern "wasm" fn v128_load32_zero(
   #|    (v128.load32_zero offset=8 (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_load64_zero(
   bytes : FixedArray[Byte],
   offset : Int,
@@ -1165,13 +1178,14 @@ pub extern "wasm" fn f64x2_splat(v : Double) -> V128 =
 // ============================
 
 ///|
+#borrow(bytes)
 pub extern "wasm" fn v128_store(
   bytes : FixedArray[Byte],
   offset : Int,
   value : V128,
 ) -> Unit =
-  #| (func (param $bytes i32) (param $offset i32) (param $value v128)
-  #|    (v128.store offset=8 (i32.add (local.get $offset) (local.get $bytes)) (local.get $value)))
+  #| (func (param $bytes i32) (param $offset i32) (param $value v128) (result i32)
+  #|    (v128.store offset=8 (i32.add (local.get $offset) (local.get $bytes)) (local.get $value)) (i32.const 0))
 
 ///|
 pub fn v128_store8_lane(

@@ -1681,32 +1681,32 @@ pub fn v128_load8x8_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
 ///|
 pub fn v128_load16x4_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i16_le(offset).extend_s()
-  let a1 = bytes.load_i16_le(offset + 1).extend_s()
-  let a2 = bytes.load_i16_le(offset + 2).extend_s()
-  let a3 = bytes.load_i16_le(offset + 3).extend_s()
+  let a1 = bytes.load_i16_le(offset + 2).extend_s()
+  let a2 = bytes.load_i16_le(offset + 4).extend_s()
+  let a3 = bytes.load_i16_le(offset + 6).extend_s()
   I32x4::to(I32x4(a0, a1, a2, a3))
 }
 
 ///|
 pub fn v128_load16x4_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i16_le(offset).extend_u()
-  let a1 = bytes.load_i16_le(offset + 1).extend_u()
-  let a2 = bytes.load_i16_le(offset + 2).extend_u()
-  let a3 = bytes.load_i16_le(offset + 3).extend_u()
+  let a1 = bytes.load_i16_le(offset + 2).extend_u()
+  let a2 = bytes.load_i16_le(offset + 4).extend_u()
+  let a3 = bytes.load_i16_le(offset + 6).extend_u()
   I32x4::to(I32x4(a0, a1, a2, a3))
 }
 
 ///|
 pub fn v128_load32x2_s(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset).extend_s()
-  let a1 = bytes.load_i32_le(offset + 1).extend_s()
+  let a1 = bytes.load_i32_le(offset + 4).extend_s()
   I64x2::to(I64x2(a0, a1))
 }
 
 ///|
 pub fn v128_load32x2_u(bytes : FixedArray[Byte], offset : Int) -> V128 {
   let a0 = bytes.load_i32_le(offset).extend_u()
-  let a1 = bytes.load_i32_le(offset + 1).extend_u()
+  let a1 = bytes.load_i32_le(offset + 4).extend_u()
   I64x2::to(I64x2(a0, a1))
 }
 
