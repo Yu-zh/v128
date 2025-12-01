@@ -630,44 +630,28 @@ pub extern "wasm" fn f64x2_convert_low_i32x4_u(v : V128) -> V128 =
 // ============================
 
 ///|
-pub fn i8x16_extract_lane_s(v : V128, laneid : Int) -> UInt {
-  ...
-}
+pub fn i8x16_extract_lane_s(v : V128, laneid : Int) -> UInt = "%i8x16.extract_lane_s"
 
 ///|
-pub fn i8x16_extract_lane_u(v : V128, laneid : Int) -> UInt {
-  ...
-}
+pub fn i8x16_extract_lane_u(v : V128, laneid : Int) -> UInt = "%i8x16.extract_lane_u"
 
 ///|
-pub fn i16x8_extract_lane_s(v : V128, laneid : Int) -> UInt {
-  ...
-}
+pub fn i16x8_extract_lane_s(v : V128, laneid : Int) -> UInt = "%i16x8.extract_lane_s"
 
 ///|
-pub fn i16x8_extract_lane_u(v : V128, laneid : Int) -> UInt {
-  ...
-}
+pub fn i16x8_extract_lane_u(v : V128, laneid : Int) -> UInt = "%i16x8.extract_lane_u"
 
 ///|
-pub fn i32x4_extract_lane(v : V128, laneid : Int) -> UInt {
-  ...
-}
+pub fn i32x4_extract_lane(v : V128, laneid : Int) -> UInt = "%i32x4.extract_lane"
 
 ///|
-pub fn i64x2_extract_lane(v : V128, laneid : Int) -> UInt64 {
-  ...
-}
+pub fn i64x2_extract_lane(v : V128, laneid : Int) -> UInt64 = "%i64x2.extract_lane"
 
 ///|
-pub fn f32x4_extract_lane(v : V128, laneid : Int) -> Float {
-  ...
-}
+pub fn f32x4_extract_lane(v : V128, laneid : Int) -> Float = "%f32x4.extract_lane"
 
 ///|
-pub fn f64x2_extract_lane(v : V128, laneid : Int) -> Double {
-  ...
-}
+pub fn f64x2_extract_lane(v : V128, laneid : Int) -> Double = "%f64x2.extract_lane"
 
 // ============================
 // loadop
@@ -1027,34 +1011,22 @@ pub extern "wasm" fn f64x2_ge(v1 : V128, v2 : V128) -> V128 =
 // ============================
 
 ///|
-pub fn i8x16_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
-  ...
-}
+pub fn i8x16_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 = "%i8x16.replace_lane"
 
 ///|
-pub fn i16x8_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
-  ...
-}
+pub fn i16x8_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 = "%i16x8.replace_lane"
 
 ///|
-pub fn i32x4_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 {
-  ...
-}
+pub fn i32x4_replace_lane(v : V128, laneid : Int, value : UInt) -> V128 = "%i32x4.replace_lane"
 
 ///|
-pub fn i64x2_replace_lane(v : V128, laneid : Int, value : UInt64) -> V128 {
-  ...
-}
+pub fn i64x2_replace_lane(v : V128, laneid : Int, value : UInt64) -> V128 = "%i64x2.replace_lane"
 
 ///|
-pub fn f32x4_replace_lane(v : V128, laneid : Int, value : Float) -> V128 {
-  ...
-}
+pub fn f32x4_replace_lane(v : V128, laneid : Int, value : Float) -> V128 = "%f32x4.replace_lane"
 
 ///|
-pub fn f64x2_replace_lane(v : V128, laneid : Int, value : Double) -> V128 {
-  ...
-}
+pub fn f64x2_replace_lane(v : V128, laneid : Int, value : Double) -> V128 = "%f64x2.replace_lane"
 
 // ============================
 // shiftop
