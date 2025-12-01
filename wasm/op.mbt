@@ -775,9 +775,7 @@ pub fn v128_load8_lane(
   offset : Int,
   x : V128,
   laneid : Int,
-) -> V128 {
-  ...
-}
+) -> V128 = "%v128.load8_lane"
 
 ///|
 pub fn v128_load16_lane(
@@ -785,9 +783,7 @@ pub fn v128_load16_lane(
   offset : Int,
   x : V128,
   laneid : Int,
-) -> V128 {
-  ...
-}
+) -> V128 = "%v128.load16_lane"
 
 ///|
 pub fn v128_load32_lane(
@@ -795,9 +791,7 @@ pub fn v128_load32_lane(
   offset : Int,
   x : V128,
   laneid : Int,
-) -> V128 {
-  ...
-}
+) -> V128 = "%v128.load32_lane"
 
 ///|
 pub fn v128_load64_lane(
@@ -805,9 +799,7 @@ pub fn v128_load64_lane(
   offset : Int,
   x : V128,
   laneid : Int,
-) -> V128 {
-  ...
-}
+) -> V128 = "%v128.load64_lane"
 
 // ============================
 // relop
@@ -1193,9 +1185,7 @@ pub fn v128_store8_lane(
   offset : Int,
   value : V128,
   laneid : Int,
-) -> Unit {
-  ...
-}
+) -> Unit = "%v128.store8_lane"
 
 ///|
 pub fn v128_store16_lane(
@@ -1203,9 +1193,7 @@ pub fn v128_store16_lane(
   offset : Int,
   value : V128,
   laneid : Int,
-) -> Unit {
-  ...
-}
+) -> Unit = "%v128.store16_lane"
 
 ///|
 pub fn v128_store32_lane(
@@ -1213,9 +1201,7 @@ pub fn v128_store32_lane(
   offset : Int,
   value : V128,
   laneid : Int,
-) -> Unit {
-  ...
-}
+) -> Unit = "%v128.store32_lane"
 
 ///|
 pub fn v128_store64_lane(
@@ -1223,9 +1209,7 @@ pub fn v128_store64_lane(
   offset : Int,
   value : V128,
   laneid : Int,
-) -> Unit {
-  ...
-}
+) -> Unit = "%v128.store64_lane"
 
 // ============================
 // testop

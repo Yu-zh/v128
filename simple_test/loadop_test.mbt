@@ -24,7 +24,9 @@ test "v128_load8x8_s" {
   assert_eq(v, expected)
 
   // Test with negative bytes (>= 128) to verify sign extension
-  let bytes2 : FixedArray[Byte] = [0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82,
+  ]
   let v2 = @v128.v128_load8x8_s(bytes2, 0)
   // 0xFF as signed i8 = -1, extended to i16 = -1 = 0xFFFF
   // 0x80 as signed i8 = -128, extended to i16 = -128 = 0xFF80
@@ -32,7 +34,9 @@ test "v128_load8x8_s" {
   // 0xFE as signed i8 = -2, extended to i16 = -2 = 0xFFFE
   // 0x81 as signed i8 = -127, extended to i16 = -127 = 0xFF81
   // 0x82 as signed i8 = -126, extended to i16 = -126 = 0xFF82
-  let expected2 = @v128.i16x8_const(0xFFFF, 0xFF80, 127, 1, 0xFFFE, 0xFF81, 0, 0xFF82)
+  let expected2 = @v128.i16x8_const(
+    0xFFFF, 0xFF80, 127, 1, 0xFFFE, 0xFF81, 0, 0xFF82,
+  )
   assert_eq(v2, expected2)
 
   // Test with non-zero offset
@@ -50,15 +54,21 @@ test "v128_load8x8_u" {
   assert_eq(v, expected)
 
   // Test with high bytes (>= 128) to verify zero extension (not sign extension)
-  let bytes2 : FixedArray[Byte] = [0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82,
+  ]
   let v2 = @v128.v128_load8x8_u(bytes2, 0)
   // 0xFF as unsigned i8 = 255, zero-extended to i16 = 255
   // 0x80 as unsigned i8 = 128, zero-extended to i16 = 128
-  let expected2 = @v128.i16x8_const(0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82)
+  let expected2 = @v128.i16x8_const(
+    0xFF, 0x80, 0x7F, 0x01, 0xFE, 0x81, 0x00, 0x82,
+  )
   assert_eq(v2, expected2)
 
   // Test with non-zero offset
-  let bytes3 : FixedArray[Byte] = [0, 0, 0, 200, 210, 220, 230, 240, 250, 128, 129]
+  let bytes3 : FixedArray[Byte] = [
+    0, 0, 0, 200, 210, 220, 230, 240, 250, 128, 129,
+  ]
   let v3 = @v128.v128_load8x8_u(bytes3, 3)
   let expected3 = @v128.i16x8_const(200, 210, 220, 230, 240, 250, 128, 129)
   assert_eq(v3, expected3)
@@ -76,13 +86,17 @@ test "v128_load16x4_s" {
   // 0x8000 as signed i16 = -32768, extended to i32 = -32768 = 0xFFFF8000
   // 0x7FFF as signed i16 = 32767, extended to i32 = 32767
   // 0x8001 as signed i16 = -32767, extended to i32 = -32767 = 0xFFFF8001
-  let bytes2 : FixedArray[Byte] = [0xFF, 0xFF, 0x00, 0x80, 0xFF, 0x7F, 0x01, 0x80]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0xFF, 0x00, 0x80, 0xFF, 0x7F, 0x01, 0x80,
+  ]
   let v2 = @v128.v128_load16x4_s(bytes2, 0)
   let expected2 = @v128.i32x4_const(0xFFFFFFFF, 0xFFFF8000, 32767, 0xFFFF8001)
   assert_eq(v2, expected2)
 
   // Test with non-zero offset
-  let bytes3 : FixedArray[Byte] = [0, 0, 0, 0, 0x10, 0x00, 0x20, 0x00, 0x30, 0x00, 0x40, 0x00]
+  let bytes3 : FixedArray[Byte] = [
+    0, 0, 0, 0, 0x10, 0x00, 0x20, 0x00, 0x30, 0x00, 0x40, 0x00,
+  ]
   let v3 = @v128.v128_load16x4_s(bytes3, 4)
   let expected3 = @v128.i32x4_const(0x10, 0x20, 0x30, 0x40)
   assert_eq(v3, expected3)
@@ -98,13 +112,17 @@ test "v128_load16x4_u" {
   // Test with high i16 values to verify zero extension (not sign extension)
   // 0xFFFF as unsigned i16 = 65535, zero-extended to i32 = 65535
   // 0x8000 as unsigned i16 = 32768, zero-extended to i32 = 32768
-  let bytes2 : FixedArray[Byte] = [0xFF, 0xFF, 0x00, 0x80, 0xFF, 0x7F, 0x01, 0x80]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0xFF, 0x00, 0x80, 0xFF, 0x7F, 0x01, 0x80,
+  ]
   let v2 = @v128.v128_load16x4_u(bytes2, 0)
   let expected2 = @v128.i32x4_const(0xFFFF, 0x8000, 0x7FFF, 0x8001)
   assert_eq(v2, expected2)
 
   // Test with non-zero offset
-  let bytes3 : FixedArray[Byte] = [0, 0, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22]
+  let bytes3 : FixedArray[Byte] = [
+    0, 0, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22,
+  ]
   let v3 = @v128.v128_load16x4_u(bytes3, 2)
   let expected3 = @v128.i32x4_const(0xBBAA, 0xDDCC, 0xFFEE, 0x2211)
   assert_eq(v3, expected3)
@@ -120,13 +138,17 @@ test "v128_load32x2_s" {
   // Test with negative i32 values to verify sign extension
   // 0xFFFFFFFF as signed i32 = -1, extended to i64 = -1 = 0xFFFFFFFFFFFFFFFF
   // 0x80000000 as signed i32 = -2147483648, extended to i64 = -2147483648 = 0xFFFFFFFF80000000
-  let bytes2 : FixedArray[Byte] = [0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x80]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x80,
+  ]
   let v2 = @v128.v128_load32x2_s(bytes2, 0)
   let expected2 = @v128.i64x2_const(0xFFFFFFFFFFFFFFFFUL, 0xFFFFFFFF80000000UL)
   assert_eq(v2, expected2)
 
   // Test with non-zero offset
-  let bytes3 : FixedArray[Byte] = [0, 0, 0, 0, 0x10, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00]
+  let bytes3 : FixedArray[Byte] = [
+    0, 0, 0, 0, 0x10, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
+  ]
   let v3 = @v128.v128_load32x2_s(bytes3, 4)
   let expected3 = @v128.i64x2_const(0x10UL, 0x20UL)
   assert_eq(v3, expected3)
@@ -142,7 +164,9 @@ test "v128_load32x2_u" {
   // Test with high i32 values to verify zero extension (not sign extension)
   // 0xFFFFFFFF as unsigned i32 = 4294967295, zero-extended to i64 = 4294967295
   // 0x80000000 as unsigned i32 = 2147483648, zero-extended to i64 = 2147483648
-  let bytes2 : FixedArray[Byte] = [0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x80]
+  let bytes2 : FixedArray[Byte] = [
+    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x80,
+  ]
   let v2 = @v128.v128_load32x2_u(bytes2, 0)
   let expected2 = @v128.i64x2_const(0xFFFFFFFFUL, 0x80000000UL)
   assert_eq(v2, expected2)
@@ -150,7 +174,9 @@ test "v128_load32x2_u" {
   // Test with non-zero offset
   // bytes[2:6] = [0xAA, 0xBB, 0xCC, 0xDD] -> little-endian i32 = 0xDDCCBBAA
   // bytes[6:10] = [0xEE, 0xFF, 0x11, 0x22] -> little-endian i32 = 0x2211FFEE
-  let bytes3 : FixedArray[Byte] = [0, 0, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22]
+  let bytes3 : FixedArray[Byte] = [
+    0, 0, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x11, 0x22,
+  ]
   let v3 = @v128.v128_load32x2_u(bytes3, 2)
   let expected3 = @v128.i64x2_const(0xDDCCBBAAUL, 0x2211FFEEUL)
   assert_eq(v3, expected3)
@@ -258,4 +284,53 @@ test "v128_load64_zero" {
   let v2 = @v128.v128_load64_zero(bytes2, 3)
   let expected2 = @v128.i64x2_const(0x8877665544332211UL, 0)
   assert_eq(v2, expected2)
+}
+
+///|
+test "v128_load8_lane" {
+  let bytes : FixedArray[Byte] = [
+    10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160,
+  ]
+  let x = @v128.i8x16_const(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+  let v = @v128.v128_load8_lane(bytes, 4, x, 0)
+  let expected = @v128.i8x16_const(
+    50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  )
+  assert_eq(v, expected)
+}
+
+///|
+test "v128_load16_lane" {
+  let bytes : FixedArray[Byte] = [
+    0x34, 0x12, 0x78, 0x56, 0xBC, 0x9A, 0xF0, 0xDE, 0x12, 0x34, 0x56, 0x78, 0x9A,
+    0xBC, 0xDE, 0xF0,
+  ]
+  let x = @v128.i16x8_const(0, 0, 0, 0, 0, 0, 0, 0)
+  let v = @v128.v128_load16_lane(bytes, 4, x, 1)
+  let expected = @v128.i16x8_const(0, 0x9ABC, 0, 0, 0, 0, 0, 0)
+  assert_eq(v, expected)
+}
+
+///|
+test "v128_load32_lane" {
+  let bytes : FixedArray[Byte] = [
+    0x78, 0x56, 0x34, 0x12, 0xF0, 0xDE, 0xBC, 0x9A, 0x12, 0x34, 0x56, 0x78, 0x9A,
+    0xBC, 0xDE, 0xF0,
+  ]
+  let x = @v128.i32x4_const(0, 0, 0, 0)
+  let v = @v128.v128_load32_lane(bytes, 4, x, 2)
+  let expected = @v128.i32x4_const(0, 0, 0x9ABCDEF0, 0)
+  assert_eq(v, expected)
+}
+
+///|
+test "v128_load64_lane" {
+  let bytes : FixedArray[Byte] = [
+    0xEF, 0xCD, 0xAB, 0x90, 0x78, 0x56, 0x34, 0x12, 0x12, 0x34, 0x56, 0x78, 0x9A,
+    0xBC, 0xDE, 0xF0,
+  ]
+  let x = @v128.i64x2_const(0, 0)
+  let v = @v128.v128_load64_lane(bytes, 4, x, 1)
+  let expected = @v128.i64x2_const(0, 0x7856341212345678UL)
+  assert_eq(v, expected)
 }
