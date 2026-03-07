@@ -1,51 +1,43 @@
-# Project Agents.md Guide
+# v128 Agent Guide
 
-This is a [MoonBit](https://docs.moonbitlang.com) project.
+This module is an experimental SIMD `v128` library for MoonBit. The public API is a virtual package, and the naming intentionally follows WebAssembly SIMD instructions closely. Preserve that mapping unless the user explicitly asks for an API redesign.
 
-## Project Structure
+## Package Layout
 
-- MoonBit packages are organized per directory, for each directory, there is a
-  `moon.pkg.json` file listing its dependencies. Each package has its files and
-  blackbox test files (common, ending in `_test.mbt`) and whitebox test files
-  (ending in `_wbtest.mbt`).
+- Root package: [`moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/moon.pkg) declares `Yu-zh/v128` as a virtual package with no default implementation.
+- Interface source of truth: [`pkg.mbti`](/Users/whitepie/playground/moonbit-playground/v128/pkg.mbti) defines the virtual package surface. Treat it as maintained source, not generated output.
+- Wasm backend: [`wasm/`](/Users/whitepie/playground/moonbit-playground/v128/wasm) implements `Yu-zh/v128` with `extern "wasm"` bindings and wasm intrinsics.
+- Scalar backend: [`scalar/`](/Users/whitepie/playground/moonbit-playground/v128/scalar) implements the same interface in portable software. [`scalar/simd.mbt`](/Users/whitepie/playground/moonbit-playground/v128/scalar/simd.mbt) defines the concrete `V128` representation and lane conversion helpers.
+- Tests: [`simple_test/`](/Users/whitepie/playground/moonbit-playground/v128/simple_test) exercises the virtual API through an override. [`test0/`](/Users/whitepie/playground/moonbit-playground/v128/test0) and [`main/`](/Users/whitepie/playground/moonbit-playground/v128/main) are small extra entry points wired to the wasm backend.
 
-- In the toplevel directory, this is a `moon.mod.json` file listing about the
-  module and some meta information.
+## Working Rules
 
-## Coding convention
+- Keep function names and semantics aligned with wasm SIMD instructions. Avoid "idiomatic" renames that would break the instruction-to-API correspondence.
+- When adding or changing an operation, update all three layers together:
+  1. [`pkg.mbti`](/Users/whitepie/playground/moonbit-playground/v128/pkg.mbti)
+  2. [`wasm/`](/Users/whitepie/playground/moonbit-playground/v128/wasm)
+  3. [`scalar/`](/Users/whitepie/playground/moonbit-playground/v128/scalar)
+- The scalar backend is expected to preserve lane order and bit-level reinterpretation behavior exactly. Be careful around signed vs unsigned lanes, saturating ops, and float bit casts.
+- Keep MoonBit files in `///|` blocks. This repo already uses that style heavily, especially in the scalar implementation.
+- If you temporarily switch tests to the scalar backend, restore the previous override unless the task is specifically changing the default test target.
 
-- MoonBit code is organized in block style, each block is separated by `///|`,
-  the order of each block is irrelevant. In some refactorings, you can process
-  block by block independently.
+## Testing Workflow
 
-- Try to keep deprecated blocks in file called `deprecated.mbt` in each
-  directory.
+- Primary regression command:
+  `moon test -p v128/simple_test --target wasm`
+- The current default override in [`simple_test/moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/simple_test/moon.pkg) points to `Yu-zh/v128/wasm`.
+- To run the same suite against the scalar backend, edit [`simple_test/moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/simple_test/moon.pkg) and change:
+  `overrides: [ "Yu-zh/v128/wasm" ]`
+  to:
+  `overrides: [ "Yu-zh/v128/scalar" ]`
+- This override swap is currently manual and awkward. Do not "clean it up" as part of unrelated work.
+- After code changes, prefer:
+  `moon test -p v128/simple_test --target wasm`
+  and, when relevant, the same suite with the scalar override.
 
-## Tooling
+## Editing Guidance
 
-- `moon fmt` is used to format your code properly.
-
-- `moon info` is used to update the generated interface of the package, each
-  package has a generated interface file `.mbti`, it is a brief formal
-  description of the package. If nothing in `.mbti` changes, this means your
-  change does not bring the visible changes to the external package users, it is
-  typically a safe refactoring.
-
-- In the last step, run `moon info && moon fmt` to update the interface and
-  format the code. Check the diffs of `.mbti` file to see if the changes are
-  expected.
-
-- Run `moon test` to check the test is passed. MoonBit supports snapshot
-  testing, so when your changes indeed change the behavior of the code, you
-  should run `moon test --update` to update the snapshot.
-
-- You can run `moon check` to check the code is linted correctly.
-
-- When writing tests, you are encouraged to use `inspect` and run
-  `moon test --update` to update the snapshots, only use assertions like
-  `assert_eq` when you are in some loops where each snapshot may vary. You can
-  use `moon coverage analyze > uncovered.log` to see which parts of your code
-  are not covered by tests.
-
-- agent-todo.md has some small tasks that are easy for AI to pick up, agent is
-  welcome to finish the tasks and check the box when you are done
+- In [`wasm/op.mbt`](/Users/whitepie/playground/moonbit-playground/v128/wasm/op.mbt), prefer adding thin wasm bindings that match the instruction names already used in `pkg.mbti`.
+- In [`scalar/op.mbt`](/Users/whitepie/playground/moonbit-playground/v128/scalar/op.mbt), keep implementations explicit and semantics-first. Straightforward code is preferable to clever code here.
+- If you touch loads, stores, lane extraction, or reinterpretation logic, add or extend tests in [`simple_test/`](/Users/whitepie/playground/moonbit-playground/v128/simple_test).
+- [`README.mbt.md`](/Users/whitepie/playground/moonbit-playground/v128/README.mbt.md) is minimal today. Do not assume it documents the backend-selection workflow; use the package files directly.
