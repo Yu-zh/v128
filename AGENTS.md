@@ -25,15 +25,18 @@ This module is an experimental SIMD `v128` library for MoonBit. The public API i
 
 - Primary regression command:
   `moon test -p v128/simple_test --target wasm`
+- Preferred local helper:
+  `scripts/test-simple.sh wasm`
+  `scripts/test-simple.sh scalar`
+  `scripts/test-simple.sh all`
 - The current default override in [`simple_test/moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/simple_test/moon.pkg) points to `Yu-zh/v128/wasm`.
-- To run the same suite against the scalar backend, edit [`simple_test/moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/simple_test/moon.pkg) and change:
-  `overrides: [ "Yu-zh/v128/wasm" ]`
-  to:
-  `overrides: [ "Yu-zh/v128/scalar" ]`
-- This override swap is currently manual and awkward. Do not "clean it up" as part of unrelated work.
+- `scripts/test-simple.sh` temporarily swaps the override in [`simple_test/moon.pkg`](/Users/whitepie/playground/moonbit-playground/v128/simple_test/moon.pkg), runs the suite, and restores the original file content on exit.
+- The helper defaults to `--target wasm` for the wasm backend and `--target native` for the scalar backend. Pass an explicit `--target` to override that choice.
+- Manual override edits are still valid when needed, but they should no longer be the normal workflow.
 - After code changes, prefer:
-  `moon test -p v128/simple_test --target wasm`
-  and, when relevant, the same suite with the scalar override.
+  `scripts/test-simple.sh wasm`
+  and, when relevant:
+  `scripts/test-simple.sh scalar`
 
 ## Editing Guidance
 
