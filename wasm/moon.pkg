@@ -1,0 +1,5 @@
+warnings = "-2-28"
+
+options(
+  implement: "Yu-zh/v128",
+)

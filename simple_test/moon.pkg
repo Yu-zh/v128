@@ -1,0 +1,7 @@
+import {
+  "Yu-zh/v128",
+} for "test"
+
+options(
+  overrides: [ "Yu-zh/v128/wasm" ],
+)

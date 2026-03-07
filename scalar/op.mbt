@@ -2081,10 +2081,12 @@ pub fn i64x2_ge_s(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 fn F32x4::relop(v1 : V128, v2 : V128, op : (Float, Float) -> Bool) -> V128 {
-  let f32_from_bool = b => if b {
-    Float::reinterpret_from_int(-1)
-  } else {
-    Float::reinterpret_from_int(0)
+  let f32_from_bool = b => {
+    if b {
+      Float::reinterpret_from_int(-1)
+    } else {
+      Float::reinterpret_from_int(0)
+    }
   }
   let F32x4(a0, a1, a2, a3) = F32x4::from(v1)
   let F32x4(b0, b1, b2, b3) = F32x4::from(v2)
@@ -2130,10 +2132,12 @@ pub fn f32x4_ge(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 fn F64x2::relop(v1 : V128, v2 : V128, op : (Double, Double) -> Bool) -> V128 {
-  let f64_from_bool = b => if b {
-    (-1 : Int64).reinterpret_as_double()
-  } else {
-    0
+  let f64_from_bool = b => {
+    if b {
+      (-1 : Int64).reinterpret_as_double()
+    } else {
+      0
+    }
   }
   let F64x2(a0, a1) = F64x2::from(v1)
   let F64x2(b0, b1) = F64x2::from(v2)

@@ -1,5 +1,0 @@
-{
-  "import": [ "Yu-zh/v128"],
-  "is-main": true,
-  "overrides": [ "Yu-zh/v128/wasm" ]
-}

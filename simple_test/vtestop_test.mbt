@@ -1,7 +1,6 @@
 ///|
 // Simple tests for vtestop.mbt functions
 
-
 test "V128::any_true" {
   let v = @v128.i64x2_const(0UL, 1UL)
   assert_true(@v128.v128_any_true(v))

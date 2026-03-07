@@ -4,28 +4,36 @@
 // ========== I16x8 Extend Operations ==========
 
 test "I16x8::extend_low_i8x16_s" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(1, 2, 3, 4, 5, 6, 7, 8)
   assert_eq(@v128.i16x8_extend_low_i8x16_s(v), expected)
 }
 
 ///|
 test "I16x8::extend_high_i8x16_s" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(9, 10, 11, 12, 13, 14, 15, 16)
   assert_eq(@v128.i16x8_extend_high_i8x16_s(v), expected)
 }
 
 ///|
 test "I16x8::extend_low_i8x16_u" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(1, 2, 3, 4, 5, 6, 7, 8)
   assert_eq(@v128.i16x8_extend_low_i8x16_u(v), expected)
 }
 
 ///|
 test "I16x8::extend_high_i8x16_u" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(9, 10, 11, 12, 13, 14, 15, 16)
   assert_eq(@v128.i16x8_extend_high_i8x16_u(v), expected)
 }
@@ -34,14 +42,18 @@ test "I16x8::extend_high_i8x16_u" {
 
 ///|
 test "I16x8::extadd_pairwise_i8x16_s" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(3, 7, 11, 15, 19, 23, 27, 31)
   assert_eq(@v128.i16x8_extadd_pairwise_i8x16_s(v), expected)
 }
 
 ///|
 test "I16x8::extadd_pairwise_i8x16_u" {
-  let v = @v128.i8x16_const(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  let v = @v128.i8x16_const(
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  )
   let expected = @v128.i16x8_const(3, 7, 11, 15, 19, 23, 27, 31)
   assert_eq(@v128.i16x8_extadd_pairwise_i8x16_u(v), expected)
 }
