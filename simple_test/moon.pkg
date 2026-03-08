@@ -1,6 +1,6 @@
 import {
   "Yu-zh/v128",
-  "moonbitlang/core/builtin"
+  "moonbitlang/core/builtin",
 } for "test"
 
 options(
