@@ -124,16 +124,64 @@ fn run_baseline(corpus : Array[FixedArray[Byte]]) -> Int {
 
 ///|
 fn report_corpus(name : String, corpus : Array[FixedArray[Byte]]) -> Unit {
-  let bench = @bench.new()
-  bench.bench(name="\{name} simd", count=20, fn() {
-    bench.keep(run_simd(corpus))
-  })
-  bench.bench(name="\{name} baseline", count=20, fn() {
-    bench.keep(run_baseline(corpus))
-  })
+  let simd = measure_us(fn() { run_simd(corpus) }, 20)
+  let baseline = measure_us(fn() { run_baseline(corpus) }, 20)
   println("corpus=\{name}")
   println("  cases=\{corpus.length()}")
-  println(bench.dump_summaries())
+  println("  simd: median_us=\{simd.0}, mean_us=\{simd.1}, checksum=\{simd.2}")
+  println(
+    "  baseline: median_us=\{baseline.0}, mean_us=\{baseline.1}, checksum=\{baseline.2}",
+  )
+  println(
+    "  speedup: median=\{baseline.0 / simd.0}x, mean=\{baseline.1 / simd.1}x",
+  )
+}
+
+///|
+fn measure_us(run : () -> Int, samples : Int) -> (Double, Double, Int) {
+  let times = Array::make(samples, 0.0)
+  let mut checksum = 0
+  for _ in 0..<3 {
+    checksum = checksum ^ run()
+  }
+  for i in 0..<samples {
+    let start = @bench.monotonic_clock_start()
+    checksum = checksum ^ run()
+    times[i] = @bench.monotonic_clock_end(start)
+  }
+  times.sort()
+  let mut sum = 0.0
+  for t in times {
+    sum += t
+  }
+  let median = if samples % 2 == 0 {
+    (times[samples / 2 - 1] + times[samples / 2]) / 2.0
+  } else {
+    times[samples / 2]
+  }
+  (median, sum / samples.to_double(), checksum)
+}
+
+///|
+fn make_sized_corpus(payload_len : Int) -> Array[FixedArray[Byte]] {
+  let corpus = Array::new()
+  for seed in 0..<64 {
+    let payload = make_pattern_bytes(payload_len, seed)
+    corpus.push(encode_baseline(payload, false))
+  }
+  corpus
+}
+
+///|
+fn report_size_sweep() -> Unit {
+  let payload_lengths = [3, 6, 12, 24, 48, 96, 192, 384, 768, 1536]
+  println("size-sweep payload-bytes simd-median-us baseline-median-us speedup")
+  for payload_len in payload_lengths {
+    let corpus = make_sized_corpus(payload_len)
+    let simd = measure_us(fn() { run_simd(corpus) }, 12)
+    let baseline = measure_us(fn() { run_baseline(corpus) }, 12)
+    println("\{payload_len} \{simd.0} \{baseline.0} \{baseline.0 / simd.0}")
+  }
 }
 
 ///|
@@ -142,4 +190,5 @@ fn main {
   let mixed = make_mixed_corpus()
   report_corpus("hot-full-blocks", hot)
   report_corpus("mixed", mixed)
+  report_size_sweep()
 }
