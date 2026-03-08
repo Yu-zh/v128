@@ -2,6 +2,44 @@
 using @v128 {type V128}
 
 ///|
+let hash_offsets_lut : V128 = @v128.i8x16_const(
+  0, 240, 237, 252, 65, 65, 71, 71, 0, 0, 0, 0, 0, 0, 0, 0,
+)
+
+///|
+let hash_one_hot_lut : V128 = @v128.i8x16_const(
+  1, 2, 4, 8, 16, 32, 64, 128, 0, 0, 0, 0, 0, 0, 0, 0,
+)
+
+///|
+let low_nibble_validation_lut : V128 = @v128.i8x16_const(
+  0xA8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF0, 0x54, 0x50, 0x50,
+  0x50, 0x52,
+)
+
+///|
+let pack_a_mask : V128 = @v128.i32x4_splat(0x0000003F)
+
+///|
+let pack_b_mask : V128 = @v128.i32x4_splat(0x00003F00)
+
+///|
+let pack_c_mask : V128 = @v128.i32x4_splat(0x003F0000)
+
+///|
+let pack_d_mask : V128 = @v128.i32x4_splat(0x3F000000)
+
+///|
+let packed_quartet_compact_shuffle : V128 = @v128.i8x16_const(
+  2, 1, 0, 6, 5, 4, 10, 9, 8, 14, 13, 12, 16, 16, 16, 16,
+)
+
+///|
+let upper_fill_ascii_a : V128 = @v128.i8x16_const(
+  0, 0, 0, 0, 0, 0, 0, 0, b'A', b'A', b'A', b'A', b'A', b'A', b'A', b'A',
+)
+
+///|
 /// Errors reported by the decoder.
 ///
 /// `InvalidLength` and `InvalidPadding` describe shape errors in the overall
@@ -56,9 +94,6 @@ fn decode_char(ch : Byte, offset : Int) -> UInt raise DecodeError {
 /// Repacking those sextets into decoded bytes happens later in `decode_block_16`
 /// or `decode_block_8`.
 fn decode_sextets_16(bytes : V128) -> V128? {
-  let hash_offsets = @v128.i8x16_const(
-    0, 240, 237, 252, 65, 65, 71, 71, 0, 0, 0, 0, 0, 0, 0, 0,
-  )
   let hashes = @v128.i8x16_add(
     @v128.i8x16_shr_u(bytes, 4),
     @v128.i8x16_eq(bytes, @v128.i8x16_splat(b'/')),
@@ -66,22 +101,13 @@ fn decode_sextets_16(bytes : V128) -> V128? {
   let lows = @v128.v128_and_(bytes, @v128.i8x16_splat(0x0F))
   let sextets = @v128.i8x16_sub(
     bytes,
-    @v128.i8x16_swizzle(hash_offsets, hashes),
+    @v128.i8x16_swizzle(hash_offsets_lut, hashes),
   )
-  let hash_bits = @v128.i8x16_swizzle(
-    @v128.i8x16_const(1, 2, 4, 8, 16, 32, 64, 128, 0, 0, 0, 0, 0, 0, 0, 0),
-    hashes,
-  )
+  let hash_bits = @v128.i8x16_swizzle(hash_one_hot_lut, hashes)
   // This exact-membership filter follows the blog's LUT-heavy validation idea.
   // In practice, it is more elegant than the compare network, but not
   // necessarily faster on the current MoonBit->wasm codegen path.
-  let nibble_masks = @v128.i8x16_swizzle(
-    @v128.i8x16_const(
-      0xA8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF8, 0xF0, 0x54, 0x50,
-      0x50, 0x50, 0x52,
-    ),
-    lows,
-  )
+  let nibble_masks = @v128.i8x16_swizzle(low_nibble_validation_lut, lows)
   let valid = @v128.i8x16_ne(
     @v128.v128_and_(hash_bits, nibble_masks),
     @v128.i8x16_splat(0),
@@ -136,18 +162,14 @@ fn raise_first_invalid_byte(
 /// After this step, each lane holds one 24-bit decoded chunk with the three
 /// decoded bytes in the low 24 bits.
 fn pack_quartet_lanes(values : V128) -> V128 {
-  let a_mask = @v128.i32x4_splat(0x0000003F)
-  let b_mask = @v128.i32x4_splat(0x00003F00)
-  let c_mask = @v128.i32x4_splat(0x003F0000)
-  let d_mask = @v128.i32x4_splat(0x3F000000)
   @v128.v128_or_(
     @v128.v128_or_(
-      @v128.i32x4_shl(@v128.v128_and_(values, a_mask), 18),
-      @v128.i32x4_shl(@v128.v128_and_(values, b_mask), 4),
+      @v128.i32x4_shl(@v128.v128_and_(values, pack_a_mask), 18),
+      @v128.i32x4_shl(@v128.v128_and_(values, pack_b_mask), 4),
     ),
     @v128.v128_or_(
-      @v128.i32x4_shr_u(@v128.v128_and_(values, c_mask), 10),
-      @v128.i32x4_shr_u(@v128.v128_and_(values, d_mask), 24),
+      @v128.i32x4_shr_u(@v128.v128_and_(values, pack_c_mask), 10),
+      @v128.i32x4_shr_u(@v128.v128_and_(values, pack_d_mask), 24),
     ),
   )
 }
@@ -159,10 +181,7 @@ fn pack_quartet_lanes(values : V128) -> V128 {
 /// `[2,1,0]`, `[6,5,4]`, `[10,9,8]`, and `[14,13,12]`. One final swizzle moves
 /// those twelve bytes to the front of the vector for storage.
 fn compact_packed_quartets(packed_lanes : V128) -> V128 {
-  @v128.i8x16_swizzle(
-    packed_lanes,
-    @v128.i8x16_const(2, 1, 0, 6, 5, 4, 10, 9, 8, 14, 13, 12, 16, 16, 16, 16),
-  )
+  @v128.i8x16_swizzle(packed_lanes, packed_quartet_compact_shuffle)
 }
 
 ///|
@@ -204,12 +223,12 @@ fn decode_block_8(
   out : FixedArray[Byte],
   out_offset : Int,
 ) -> Unit raise DecodeError {
-  let upper_fill = @v128.i8x16_const(
-    0, 0, 0, 0, 0, 0, 0, 0, b'A', b'A', b'A', b'A', b'A', b'A', b'A', b'A',
-  )
   let values = match
     decode_sextets_16(
-      @v128.v128_or_(@v128.v128_load64_zero(input, in_offset), upper_fill),
+      @v128.v128_or_(
+        @v128.v128_load64_zero(input, in_offset),
+        upper_fill_ascii_a,
+      ),
     ) {
     Some(values) => values
     None => {
