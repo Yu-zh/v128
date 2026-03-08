@@ -4,6 +4,8 @@ package "Yu-zh/v128/example/base64"
 // Values
 pub fn decode(FixedArray[Byte]) -> FixedArray[Byte]?
 
+pub fn decode_baseline(FixedArray[Byte]) -> FixedArray[Byte]?
+
 // Errors
 
 // Types and methods

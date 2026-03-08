@@ -1,0 +1,9 @@
+import {
+  "Yu-zh/v128/example/base64",
+  "moonbitlang/core/bench",
+}
+
+options(
+  "is-main": true,
+  overrides: [ "Yu-zh/v128/wasm" ],
+)
