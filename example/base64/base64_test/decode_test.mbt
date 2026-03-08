@@ -3,10 +3,18 @@ fn assert_decodes(
   input : FixedArray[Byte],
   expected : FixedArray[Byte],
 ) -> Unit raise {
-  match @base64.decode(input) {
-    Some(actual) => @builtin.assert_eq(actual, expected)
-    None => panic()
+  @builtin.assert_eq(@base64.decode(input), expected)
+}
+
+///|
+fn assert_rejects(input : FixedArray[Byte]) -> Unit raise {
+  let mut saw_error = false
+  try {
+    let _ = @base64.decode(input)
+  } catch {
+    _ => saw_error = true
   }
+  assert_eq(saw_error, true)
 }
 
 ///|
@@ -86,22 +94,17 @@ test "decode mixed block plus padded tail" {
 
 ///|
 test "reject invalid input" {
-  assert_true(@base64.decode([b'Z']) is None)
-  assert_true(@base64.decode([b'=']) is None)
-  assert_true(@base64.decode([b'Z', b'h']) is None)
-  assert_true(@base64.decode([b'Z', b'h', b'=', b'=']) is None)
-  assert_true(@base64.decode([b'Z', b'm', b'9']) is None)
-  assert_true(@base64.decode([b'Z', b'm', b'9', b'=']) is None)
-  assert_true(@base64.decode([b'Z', b'g', b'=', b'A']) is None)
-  assert_true(
-    @base64.decode([
-      b'Y', b'W', b'J', b'j', b'Z', b'G', b'V', b'm', b'Z', b'2', b'h', b'!', b'a',
-      b'm', b't', b's',
-    ])
-    is None,
-  )
-  assert_true(
-    @base64.decode([b'Y', b'W', b'J', b'j', b'=', b'G', b'V', b'm']) is None,
-  )
-  assert_true(@base64.decode([b'Z', b'm', b'9', b'v', b'-']) is None)
+  assert_rejects([b'Z'])
+  assert_rejects([b'='])
+  assert_rejects([b'Z', b'h'])
+  assert_rejects([b'Z', b'h', b'=', b'='])
+  assert_rejects([b'Z', b'm', b'9'])
+  assert_rejects([b'Z', b'm', b'9', b'='])
+  assert_rejects([b'Z', b'g', b'=', b'A'])
+  assert_rejects([
+    b'Y', b'W', b'J', b'j', b'Z', b'G', b'V', b'm', b'Z', b'2', b'h', b'!', b'a',
+    b'm', b't', b's',
+  ])
+  assert_rejects([b'Y', b'W', b'J', b'j', b'=', b'G', b'V', b'm'])
+  assert_rejects([b'Z', b'm', b'9', b'v', b'-'])
 }

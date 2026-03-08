@@ -61,19 +61,28 @@ fn assert_both_decode_to(
   encoded : FixedArray[Byte],
   expected : FixedArray[Byte],
 ) -> Unit raise {
-  match (@base64.decode(encoded), @base64.decode_baseline(encoded)) {
-    (Some(simd), Some(baseline)) => {
-      @builtin.assert_eq(simd, expected)
-      @builtin.assert_eq(baseline, expected)
-    }
-    _ => panic()
+  @builtin.assert_eq(@base64.decode(encoded), expected)
+  @builtin.assert_eq(@base64.decode_baseline(encoded), expected)
+}
+
+///|
+fn assert_raises_decode_error(
+  decode : (FixedArray[Byte]) -> FixedArray[Byte] raise @base64.DecodeError,
+  encoded : FixedArray[Byte],
+) -> Unit raise {
+  let mut saw_error = false
+  try {
+    let _ = decode(encoded)
+  } catch {
+    _ => saw_error = true
   }
+  assert_eq(saw_error, true)
 }
 
 ///|
 fn assert_both_reject(encoded : FixedArray[Byte]) -> Unit raise {
-  assert_true(@base64.decode(encoded) is None)
-  assert_true(@base64.decode_baseline(encoded) is None)
+  assert_raises_decode_error(@base64.decode, encoded)
+  assert_raises_decode_error(@base64.decode_baseline, encoded)
 }
 
 ///|

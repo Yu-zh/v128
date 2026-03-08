@@ -100,11 +100,8 @@ fn checksum_bytes(bytes : FixedArray[Byte]) -> Int {
 fn run_simd(corpus : Array[FixedArray[Byte]]) -> Int {
   let mut checksum = 0
   for encoded in corpus {
-    match @base64.decode(encoded) {
-      Some(decoded) =>
-        checksum = (checksum * 131 + checksum_bytes(decoded)) & 0x7FFFFFFF
-      None => panic()
-    }
+    let decoded = @base64.decode(encoded) catch { _ => panic() }
+    checksum = (checksum * 131 + checksum_bytes(decoded)) & 0x7FFFFFFF
   }
   checksum
 }
@@ -113,11 +110,8 @@ fn run_simd(corpus : Array[FixedArray[Byte]]) -> Int {
 fn run_baseline(corpus : Array[FixedArray[Byte]]) -> Int {
   let mut checksum = 0
   for encoded in corpus {
-    match @base64.decode_baseline(encoded) {
-      Some(decoded) =>
-        checksum = (checksum * 131 + checksum_bytes(decoded)) & 0x7FFFFFFF
-      None => panic()
-    }
+    let decoded = @base64.decode_baseline(encoded) catch { _ => panic() }
+    checksum = (checksum * 131 + checksum_bytes(decoded)) & 0x7FFFFFFF
   }
   checksum
 }
