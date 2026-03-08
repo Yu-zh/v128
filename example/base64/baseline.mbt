@@ -1,4 +1,6 @@
 ///|
+/// Scalar reference decoder used as a correctness baseline and benchmark
+/// comparison point for the SIMD implementation.
 pub fn decode_baseline(
   input : FixedArray[Byte],
 ) -> FixedArray[Byte] raise DecodeError {
