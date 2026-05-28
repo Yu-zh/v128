@@ -1408,5 +1408,5 @@ pub fn v128_to_string(v : V128) -> String {
 
 ///|
 pub fn v128_eq(v1 : V128, v2 : V128) -> Bool {
-  not(v128_any_true(v128_xor(v1, v2)))
+  !v128_any_true(v128_xor(v1, v2))
 }

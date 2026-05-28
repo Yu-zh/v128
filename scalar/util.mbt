@@ -98,12 +98,12 @@ fn Byte::avgr_u(a : Byte, b : Byte) -> Byte {
 
 ///|
 fn Byte::sext(a : Byte) -> Int16 {
-  a.to_int16() << 8 >> 8
+  Int16::from_byte(a) << 8 >> 8
 }
 
 ///|
 fn Byte::extend_s(a : Byte) -> UInt16 {
-  (a.to_int16() << 8 >> 8).reinterpret_as_uint16()
+  (Int16::from_byte(a) << 8 >> 8).reinterpret_as_uint16()
 }
 
 ///|
@@ -190,7 +190,7 @@ fn Byte::abs(a : Byte) -> Byte {
 
 ///|
 fn UInt16::narrow_sat_i16_s(i : UInt16) -> Byte {
-  let val = i.reinterpret_as_int16()
+  let val = Int16::reinterpret_from_uint16(i)
   if val > 127 {
     0x7F
   } else if val < -128 {
@@ -211,8 +211,8 @@ fn UInt16::narrow_sat_i16_u(i : UInt16) -> Byte {
 
 ///|
 fn UInt16::add_sat_s(a : UInt16, b : UInt16) -> UInt16 {
-  let sum = a.reinterpret_as_int16().to_int() +
-    b.reinterpret_as_int16().to_int()
+  let sum = Int16::reinterpret_from_uint16(a).to_int() +
+    Int16::reinterpret_from_uint16(b).to_int()
   if sum > 32767 {
     0x7FFF
   } else if sum < -32768 {
@@ -234,8 +234,8 @@ fn UInt16::add_sat_u(a : UInt16, b : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::sub_sat_s(a : UInt16, b : UInt16) -> UInt16 {
-  let diff = a.reinterpret_as_int16().to_int() -
-    b.reinterpret_as_int16().to_int()
+  let diff = Int16::reinterpret_from_uint16(a).to_int() -
+    Int16::reinterpret_from_uint16(b).to_int()
   if diff > 32767 {
     32767
   } else if diff < -32768 {
@@ -256,7 +256,7 @@ fn UInt16::sub_sat_u(a : UInt16, b : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::min_s(a : UInt16, b : UInt16) -> UInt16 {
-  if a.reinterpret_as_int16() < b.reinterpret_as_int16() {
+  if Int16::reinterpret_from_uint16(a) < Int16::reinterpret_from_uint16(b) {
     a
   } else {
     b
@@ -274,7 +274,7 @@ fn UInt16::min_u(a : UInt16, b : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::max_s(a : UInt16, b : UInt16) -> UInt16 {
-  if a.reinterpret_as_int16() > b.reinterpret_as_int16() {
+  if Int16::reinterpret_from_uint16(a) > Int16::reinterpret_from_uint16(b) {
     a
   } else {
     b
@@ -299,7 +299,7 @@ fn UInt16::avgr_u(a : UInt16, b : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::extend_s(a : UInt16) -> UInt {
-  a.reinterpret_as_int16().to_int().reinterpret_as_uint()
+  Int16::reinterpret_from_uint16(a).to_int().reinterpret_as_uint()
 }
 
 ///|
@@ -314,7 +314,7 @@ fn UInt16::ne(a : UInt16, b : UInt16) -> Bool {
 
 ///|
 fn UInt16::lt_s(a : UInt16, b : UInt16) -> Bool {
-  a.reinterpret_as_int16() < b.reinterpret_as_int16()
+  Int16::reinterpret_from_uint16(a) < Int16::reinterpret_from_uint16(b)
 }
 
 ///|
@@ -324,7 +324,7 @@ fn UInt16::lt_u(a : UInt16, b : UInt16) -> Bool {
 
 ///|
 fn UInt16::le_s(a : UInt16, b : UInt16) -> Bool {
-  a.reinterpret_as_int16() <= b.reinterpret_as_int16()
+  Int16::reinterpret_from_uint16(a) <= Int16::reinterpret_from_uint16(b)
 }
 
 ///|
@@ -334,7 +334,7 @@ fn UInt16::le_u(a : UInt16, b : UInt16) -> Bool {
 
 ///|
 fn UInt16::gt_s(a : UInt16, b : UInt16) -> Bool {
-  a.reinterpret_as_int16() > b.reinterpret_as_int16()
+  Int16::reinterpret_from_uint16(a) > Int16::reinterpret_from_uint16(b)
 }
 
 ///|
@@ -344,7 +344,7 @@ fn UInt16::gt_u(a : UInt16, b : UInt16) -> Bool {
 
 ///|
 fn UInt16::ge_s(a : UInt16, b : UInt16) -> Bool {
-  a.reinterpret_as_int16() >= b.reinterpret_as_int16()
+  Int16::reinterpret_from_uint16(a) >= Int16::reinterpret_from_uint16(b)
 }
 
 ///|
@@ -354,12 +354,12 @@ fn UInt16::ge_u(a : UInt16, b : UInt16) -> Bool {
 
 ///|
 fn UInt16::shr_s(a : UInt16, shift : Int) -> UInt16 {
-  (a.reinterpret_as_int16() >> shift).reinterpret_as_uint16()
+  (Int16::reinterpret_from_uint16(a) >> shift).reinterpret_as_uint16()
 }
 
 ///|
 fn UInt16::abs(a : UInt16) -> UInt16 {
-  let signed = a.reinterpret_as_int16()
+  let signed = Int16::reinterpret_from_uint16(a)
   if signed < 0 {
     (-signed).reinterpret_as_uint16()
   } else {
@@ -369,7 +369,7 @@ fn UInt16::abs(a : UInt16) -> UInt16 {
 
 ///|
 fn UInt16::neg(a : UInt16) -> UInt16 {
-  (-a.reinterpret_as_int16()).reinterpret_as_uint16()
+  (-Int16::reinterpret_from_uint16(a)).reinterpret_as_uint16()
 }
 
 // ============================
@@ -537,7 +537,7 @@ fn UInt64::neg(a : UInt64) -> UInt64 {
 // ============================
 
 ///|
-fn Float::min(a : Float, b : Float) -> Float {
+fn Float::wasm_min(a : Float, b : Float) -> Float {
   if a.is_nan() || b.is_nan() {
     0.0 / 0.0
   } else if a == 0.0 && b == 0.0 {
@@ -557,7 +557,7 @@ fn Float::min(a : Float, b : Float) -> Float {
 }
 
 ///|
-fn Float::max(a : Float, b : Float) -> Float {
+fn Float::wasm_max(a : Float, b : Float) -> Float {
   if a.is_nan() || b.is_nan() {
     0.0 / 0.0
   } else if a == 0.0 && b == 0.0 {
@@ -623,7 +623,7 @@ fn Float::trunc_sat_u(a : Float) -> UInt {
 // ============================
 
 ///|
-fn Double::min(a : Double, b : Double) -> Double {
+fn Double::wasm_min(a : Double, b : Double) -> Double {
   if a.is_nan() || b.is_nan() {
     0.0 / 0.0
   } else if a == 0.0 && b == 0.0 {
@@ -645,7 +645,7 @@ fn Double::min(a : Double, b : Double) -> Double {
 }
 
 ///|
-fn Double::max(a : Double, b : Double) -> Double {
+fn Double::wasm_max(a : Double, b : Double) -> Double {
   if a.is_nan() || b.is_nan() {
     0.0 / 0.0
   } else if a == 0.0 && b == 0.0 {

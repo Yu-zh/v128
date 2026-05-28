@@ -1,6 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "Yu-zh/v128/example/base64"
 
+import {
+  "moonbitlang/core/debug",
+}
+
 // Values
 pub fn decode(FixedArray[Byte]) -> FixedArray[Byte] raise DecodeError
 
@@ -12,9 +16,7 @@ pub suberror DecodeError {
   InvalidPadding
   InvalidByte(offset~ : Int, byte~ : Byte)
   InvalidTailBits(offset~ : Int, byte~ : Byte)
-}
-pub impl Eq for DecodeError
-pub impl Show for DecodeError
+} derive(Eq, @debug.Debug)
 
 // Types and methods
 

@@ -8,7 +8,7 @@ test "v128_store" {
   let expected : FixedArray[Byte] = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
   ]
-  @builtin.assert_eq(bytes, expected)
+  @test.assert_eq(bytes, expected)
 }
 
 ///|
@@ -19,7 +19,7 @@ test "v128_store8_lane" {
   let expected : FixedArray[Byte] = [
     100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]
-  @builtin.assert_eq(bytes, expected)
+  @test.assert_eq(bytes, expected)
 }
 
 ///|
@@ -30,7 +30,7 @@ test "v128_store16_lane" {
   let expected : FixedArray[Byte] = [
     208, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]
-  @builtin.assert_eq(bytes, expected)
+  @test.assert_eq(bytes, expected)
 }
 
 ///|
@@ -41,7 +41,7 @@ test "v128_store32_lane" {
   let expected : FixedArray[Byte] = [
     224, 147, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]
-  @builtin.assert_eq(bytes, expected)
+  @test.assert_eq(bytes, expected)
 }
 
 ///|
@@ -52,5 +52,5 @@ test "v128_store64_lane" {
   let expected : FixedArray[Byte] = [
     0, 40, 107, 238, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]
-  @builtin.assert_eq(bytes, expected)
+  @test.assert_eq(bytes, expected)
 }

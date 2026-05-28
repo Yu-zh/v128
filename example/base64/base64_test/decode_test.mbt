@@ -3,7 +3,7 @@ fn assert_decodes(
   input : FixedArray[Byte],
   expected : FixedArray[Byte],
 ) -> Unit raise {
-  @builtin.assert_eq(@base64.decode(input), expected)
+  @test.assert_eq(@base64.decode(input), expected)
 }
 
 ///|

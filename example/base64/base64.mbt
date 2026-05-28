@@ -51,7 +51,7 @@ pub suberror DecodeError {
   InvalidPadding
   InvalidByte(offset~ : Int, byte~ : Byte)
   InvalidTailBits(offset~ : Int, byte~ : Byte)
-} derive(Eq, Show)
+} derive(Eq, Debug)
 
 ///|
 /// Scalar character decoder used by the scalar baseline, the tail path, and to

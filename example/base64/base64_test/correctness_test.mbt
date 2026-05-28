@@ -61,8 +61,8 @@ fn assert_both_decode_to(
   encoded : FixedArray[Byte],
   expected : FixedArray[Byte],
 ) -> Unit raise {
-  @builtin.assert_eq(@base64.decode(encoded), expected)
-  @builtin.assert_eq(@base64.decode_baseline(encoded), expected)
+  @test.assert_eq(@base64.decode(encoded), expected)
+  @test.assert_eq(@base64.decode_baseline(encoded), expected)
 }
 
 ///|

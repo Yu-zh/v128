@@ -188,7 +188,7 @@ fn F64x2::to(v : F64x2) -> V128 {
 }
 
 ///|
-pub impl Show for I8x16 with output(self, logger) {
+pub impl Show for I8x16 with fn output(self, logger) {
   let I8x16(
     a0,
     a1,
@@ -228,7 +228,7 @@ pub impl Show for I8x16 with output(self, logger) {
 }
 
 ///|
-pub impl Show for I16x8 with output(self, logger) {
+pub impl Show for I16x8 with fn output(self, logger) {
   let I16x8(a0, a1, a2, a3, a4, a5, a6, a7) = self
   logger.write_string("I16x8(")
   logger.write_string(a0.to_string(radix=16))
@@ -243,7 +243,7 @@ pub impl Show for I16x8 with output(self, logger) {
 }
 
 ///|
-pub impl Show for I32x4 with output(self, logger) {
+pub impl Show for I32x4 with fn output(self, logger) {
   let I32x4(a0, a1, a2, a3) = self
   logger.write_string("I32x4(")
   logger.write_string(a0.to_string(radix=16))
@@ -254,7 +254,7 @@ pub impl Show for I32x4 with output(self, logger) {
 }
 
 ///|
-pub impl Show for I64x2 with output(self, logger) {
+pub impl Show for I64x2 with fn output(self, logger) {
   let I64x2(a0, a1) = self
   logger.write_string("I64x2(")
   logger.write_string(a0.to_string(radix=16))
@@ -263,7 +263,7 @@ pub impl Show for I64x2 with output(self, logger) {
 }
 
 ///|
-pub impl Show for F32x4 with output(self, logger) {
+pub impl Show for F32x4 with fn output(self, logger) {
   let F32x4(a0, a1, a2, a3) = self
   logger.write_string("F32x4(")
   logger.write_string(a0.to_string())
@@ -274,7 +274,7 @@ pub impl Show for F32x4 with output(self, logger) {
 }
 
 ///|
-pub impl Show for F64x2 with output(self, logger) {
+pub impl Show for F64x2 with fn output(self, logger) {
   let F64x2(a0, a1) = self
   logger.write_string("F64x2(")
   logger.write_string(a0.to_string())
@@ -283,7 +283,7 @@ pub impl Show for F64x2 with output(self, logger) {
 }
 
 ///|
-pub impl Show for V128 with output(self, logger) {
+pub impl Show for V128 with fn output(self, logger) {
   let I8x16(
     a0,
     a1,
@@ -323,7 +323,7 @@ pub impl Show for V128 with output(self, logger) {
 }
 
 ///|
-pub impl Eq for V128 with equal(self, other) {
+pub impl Eq for V128 with fn equal(self, other) {
   let v1 = I8x16::from(self)
   let v2 = I8x16::from(other)
   v1 == v2

@@ -759,12 +759,12 @@ pub fn f32x4_div(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 pub fn f32x4_min(v1 : V128, v2 : V128) -> V128 {
-  F32x4::binop(v1, v2, Float::min)
+  F32x4::binop(v1, v2, Float::wasm_min)
 }
 
 ///|
 pub fn f32x4_max(v1 : V128, v2 : V128) -> V128 {
-  F32x4::binop(v1, v2, Float::max)
+  F32x4::binop(v1, v2, Float::wasm_max)
 }
 
 ///|
@@ -816,12 +816,12 @@ pub fn f64x2_div(v1 : V128, v2 : V128) -> V128 {
 
 ///|
 pub fn f64x2_min(v1 : V128, v2 : V128) -> V128 {
-  F64x2::binop(v1, v2, Double::min)
+  F64x2::binop(v1, v2, Double::wasm_min)
 }
 
 ///|
 pub fn f64x2_max(v1 : V128, v2 : V128) -> V128 {
-  F64x2::binop(v1, v2, Double::max)
+  F64x2::binop(v1, v2, Double::wasm_max)
 }
 
 ///|
