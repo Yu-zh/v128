@@ -659,7 +659,7 @@ pub fn f64x2_extract_lane(v : V128, laneid : Int) -> Double = "%f64x2.extract_la
 #borrow(bytes)
 pub extern "wasm" fn v128_load(bytes : FixedArray[Byte], offset : Int) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -668,7 +668,7 @@ pub extern "wasm" fn v128_load8x8_s(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load8x8_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load8x8_s (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -677,7 +677,7 @@ pub extern "wasm" fn v128_load8x8_u(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load8x8_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load8x8_u (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -686,7 +686,7 @@ pub extern "wasm" fn v128_load16x4_s(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load16x4_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load16x4_s (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -695,7 +695,7 @@ pub extern "wasm" fn v128_load16x4_u(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load16x4_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load16x4_u (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -704,7 +704,7 @@ pub extern "wasm" fn v128_load32x2_s(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load32x2_s offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load32x2_s (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -713,7 +713,7 @@ pub extern "wasm" fn v128_load32x2_u(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load32x2_u offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load32x2_u (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -722,7 +722,7 @@ pub extern "wasm" fn v128_load8_splat(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load8_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load8_splat (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -731,7 +731,7 @@ pub extern "wasm" fn v128_load16_splat(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load16_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load16_splat (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -740,7 +740,7 @@ pub extern "wasm" fn v128_load32_splat(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load32_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load32_splat (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -749,7 +749,7 @@ pub extern "wasm" fn v128_load64_splat(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load64_splat offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load64_splat (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -758,7 +758,7 @@ pub extern "wasm" fn v128_load32_zero(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load32_zero offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load32_zero (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 #borrow(bytes)
@@ -767,7 +767,7 @@ pub extern "wasm" fn v128_load64_zero(
   offset : Int,
 ) -> V128 =
   #| (func (param $bytes i32) (param $offset i32) (result v128)
-  #|    (v128.load64_zero offset=8 (i32.add (local.get $offset) (local.get $bytes))))
+  #|    (v128.load64_zero (i32.add (local.get $offset) (local.get $bytes))))
 
 ///|
 pub fn v128_load8_lane(
@@ -1176,8 +1176,8 @@ pub extern "wasm" fn v128_store(
   offset : Int,
   value : V128,
 ) -> Unit =
-  #| (func (param $bytes i32) (param $offset i32) (param $value v128) (result i32)
-  #|    (v128.store offset=8 (i32.add (local.get $offset) (local.get $bytes)) (local.get $value)) (i32.const 0))
+  #| (func (param $bytes i32) (param $offset i32) (param $value v128)
+  #|    (v128.store (i32.add (local.get $offset) (local.get $bytes)) (local.get $value)))
 
 ///|
 pub fn v128_store8_lane(
